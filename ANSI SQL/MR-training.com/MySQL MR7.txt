@@ -1,0 +1,175 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 15
+Server version: 5.5.59 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> select *from student_status;
+ERROR 1046 (3D000): No database selected
+mysql> use Shubhankar;
+Database changed
+mysql> show tables;
++----------------------+
+| Tables_in_shubhankar |
++----------------------+
+| batch_details        |
+| emp                  |
+| faculty_details      |
+| faculty_feedback4    |
+| faculty_lstatus      |
+| incentive            |
+| module_details       |
+| student              |
+| student_details      |
+| student_status       |
++----------------------+
+10 rows in set (0.00 sec)
+
+mysql> select *from faculty_feedback4;
++------------+-------------+----------+-----------+----------------+
+| Faculty_Id | question_id | batch_id | module_id | faculty_rating |
++------------+-------------+----------+-----------+----------------+
+| F001       | Q001        | B001     | J2EE      |              9 |
+| F002       | Q002        | B002     | J2EE      |              8 |
+| F003       | Q003        | B003     | O10SQL    |              5 |
++------------+-------------+----------+-----------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> select *from student_status;
++------------+----------+------------+------------+------------+
+| student_id | batch_id | start_date | end_date   | faculty_id |
++------------+----------+------------+------------+------------+
+| S001       | B001     | 2018-01-01 | 2018-12-31 | F002       |
+| S002       | B001     | 2018-01-02 | 2018-12-31 | F002       |
+| S003       | B002     | 2018-06-25 | 2018-12-31 | F003       |
+| S004       | B003     | 2018-07-01 | 2018-12-31 | F006       |
+| S005       | B003     | 2018-07-01 | 2018-12-31 | F006       |
++------------+----------+------------+------------+------------+
+5 rows in set (0.00 sec)
+
+mysql> create view MR7.1 as select s.student_id,f.faculty_id,b.batch_id from student_status s join faculty_feedback4 f on s.faculty_id=f.faculty_id;
+ERROR 1049 (42000): Unknown database 'mr7'
+mysql> create view MR7_1 as select s.student_id,f.faculty_id,b.batch_id from student_status s join faculty_feedback4 f on s.faculty_id=f.faculty_id;
+ERROR 1054 (42S22): Unknown column 'b.batch_id' in 'field list'
+mysql> create view MR7_1 as select s.student_id,f.faculty_id,f.batch_id from student_status s join faculty_feedback4 f on s.faculty_id=f.faculty_id;
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> select *from MR7_1;
++------------+------------+----------+
+| student_id | faculty_id | batch_id |
++------------+------------+----------+
+| S001       | F002       | B002     |
+| S002       | F002       | B002     |
+| S003       | F003       | B003     |
++------------+------------+----------+
+3 rows in set (0.02 sec)
+
+mysql> select *from student_details;
++------------+-------+------------+------------------------+----------+----------+
+| student_id | title | name       | email                  | password | location |
++------------+-------+------------+------------------------+----------+----------+
+| S001       | Miss  | Abha       | gayatri.narayan@hp.com | tne1@123 | Mumbai   |
+| S002       | Miss  | Neha       | neha.narayan@hp.com    | tne1@123 | Mumbai   |
+| S003       | Miss  | Swati      | swati.narayan@hp.com   | tne1@123 | Pune     |
+| S004       | Mr.   | Sameer     | sam.narayan@hp.com     | tne1@123 | Pune     |
+| S005       | Mr.   | Shubhankar | scs.narayan@hp.com     | tne1@123 | Nashik   |
++------------+-------+------------+------------------------+----------+----------+
+5 rows in set (0.00 sec)
+
+mysql> create view MR7_1 as select s.student_id,f.faculty_id,f.batch_id from student_status s join faculty_feedback4 f on s.faculty_id=f.faculty_id and batch_id='B004';
+ERROR 1052 (23000): Column 'batch_id' in on clause is ambiguous
+mysql> create view MR7_1 as select s.student_id,f.faculty_id,f.batch_id from student_status s join faculty_feedback4 f on s.faculty_id=f.faculty_id and f.batch_id='B004';
+ERROR 1050 (42S01): Table 'MR7_1' already exists
+mysql> create view MR7_2 as select s.student_id,f.faculty_id,f.batch_id from student_status s join faculty_feedback4 f on s.faculty_id=f.faculty_id and f.batch_id='B004';
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> create view MR7_2_2 as select s.student_id,f.faculty_id,f.batch_id from student_status s join faculty_feedback4 f on s.faculty_id=f.faculty_id and f.batch_id='B002';
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> select *from MR7_2;
+Empty set (0.00 sec)
+
+mysql> select *from MR7_2_2;
++------------+------------+----------+
+| student_id | faculty_id | batch_id |
++------------+------------+----------+
+| S001       | F002       | B002     |
+| S002       | F002       | B002     |
++------------+------------+----------+
+2 rows in set (0.00 sec)
+
+mysql> create view MR7_2_2_drop as select *from MR7_2_2;
+Query OK, 0 rows affected (0.11 sec)
+
+mysql> drop view MR7_2_2_drop;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select *from student_details;
++------------+-------+------------+------------------------+----------+----------+
+| student_id | title | name       | email                  | password | location |
++------------+-------+------------+------------------------+----------+----------+
+| S001       | Miss  | Abha       | gayatri.narayan@hp.com | tne1@123 | Mumbai   |
+| S002       | Miss  | Neha       | neha.narayan@hp.com    | tne1@123 | Mumbai   |
+| S003       | Miss  | Swati      | swati.narayan@hp.com   | tne1@123 | Pune     |
+| S004       | Mr.   | Sameer     | sam.narayan@hp.com     | tne1@123 | Pune     |
+| S005       | Mr.   | Shubhankar | scs.narayan@hp.com     | tne1@123 | Nashik   |
++------------+-------+------------+------------------------+----------+----------+
+5 rows in set (0.00 sec)
+
+mysql> create index s_name_index on student_details(name);
+Query OK, 0 rows affected (0.14 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> show indexes from student_details;
++-----------------+------------+--------------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+| Table           | Non_unique | Key_name     | Seq_in_index | Column_name | Collation | Cardinality | Sub_part | Packed | Null | Index_type | Comment | Index_comment |
++-----------------+------------+--------------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+| student_details |          0 | PRIMARY      |            1 | student_id  | A         |           5 |     NULL | NULL   |      | BTREE      |         |               |
+| student_details |          1 | s_name_index |            1 | name        | A         |           5 |     NULL | NULL   | YES  | BTREE      |         |               |
++-----------------+------------+--------------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+2 rows in set (0.01 sec)
+
+mysql> create unique index s_name_index on student_details(name);
+ERROR 1061 (42000): Duplicate key name 's_name_index'
+mysql> create unique index s_name_uindex on student_details(name);
+Query OK, 0 rows affected (0.19 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> show indexes from student_details;
++-----------------+------------+---------------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+| Table           | Non_unique | Key_name      | Seq_in_index | Column_name | Collation | Cardinality | Sub_part | Packed | Null | Index_type | Comment | Index_comment |
++-----------------+------------+---------------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+| student_details |          0 | PRIMARY       |            1 | student_id  | A         |           5 |     NULL | NULL   |      | BTREE      |         |               |
+| student_details |          0 | s_name_uindex |            1 | name        | A         |           5 |     NULL | NULL   | YES  | BTREE      |         |               |
+| student_details |          1 | s_name_index  |            1 | name        | A         |           5 |     NULL | NULL   | YES  | BTREE      |         |               |
++-----------------+------------+---------------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+3 rows in set (0.00 sec)
+
+mysql> drop index s_name_uindex on student_details;
+Query OK, 0 rows affected (0.14 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> show indexes from student_details;
++-----------------+------------+--------------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+| Table           | Non_unique | Key_name     | Seq_in_index | Column_name | Collation | Cardinality | Sub_part | Packed | Null | Index_type | Comment | Index_comment |
++-----------------+------------+--------------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+| student_details |          0 | PRIMARY      |            1 | student_id  | A         |           5 |     NULL | NULL   |      | BTREE      |         |               |
+| student_details |          1 | s_name_index |            1 | name        | A         |           5 |     NULL | NULL   | YES  | BTREE      |         |               |
++-----------------+------------+--------------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+2 rows in set (0.00 sec)
+
+
+mysql> create view MR_7_7_local as select student_id,name from student_details with local check option;
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> create view MR_7_7_cascade as select student_id,name from student_details with cascaded check option;
+Query OK, 0 rows affected (0.06 sec)
+
+mysql>

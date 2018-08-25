@@ -1,0 +1,248 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 7
+Server version: 5.5.59 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use Shubhankar;
+Database changed
+mysql> select *from batch_details;
++----------+---------------------+-----------+
+| batch_id | batch_faculty       | dept_name |
++----------+---------------------+-----------+
+| B001     | Mrs. Isha Kar       | Comp      |
+| B002     | Mr. Shubhankar Sant | Comp      |
+| B003     | Ms. Neha D          | IT        |
++----------+---------------------+-----------+
+3 rows in set (0.00 sec)
+
+mysql> select *from faculty_details;
++------------+-------+-----------------+----------+--------+---------------+------------+---------------------------+----------+
+| faculty_id | title | name            | location | track  | qualification | Experience | email                     | password |
++------------+-------+-----------------+----------+--------+---------------+------------+---------------------------+----------+
+| F001       | Mr.   | Pankaj Ghosh    | Pune     | Java   | B.Tech.       |         12 | pankaj.ghosh@alliance.com | fact@123 |
+| F002       | Mrs.  | Isha Kar        | Pune     | SQL    | B.Tech.       |         12 | tinak96@alliance.com      | tina@123 |
+| F003       | Mr.   | Shubhankar Sant | Pune     | Python | B.Tech.       |          2 | scs96@alliance.com        | scs@123  |
+| F004       | Ms.   | Isha Joshi      | Mumbai   | Python | B.Sc.         |          2 | isha@alliance.com         | isha@123 |
+| F005       | Mr.   | John Cena       | Nashik   | Java   | B.Sc.         |          6 | jc@alliance.com           | jc@123   |
+| F006       | Ms.   | Neha D          | Mumbai   | C++    | B.Tech.       |          8 | nd5@alliance.com          | nd5@123  |
++------------+-------+-----------------+----------+--------+---------------+------------+---------------------------+----------+
+6 rows in set (0.00 sec)
+
+mysql> select f.faculty_id,b.vatch_id from faculty_details f left join batch_details b on b.batch_faculty=concat(f.title,' ',f.name);
+ERROR 1054 (42S22): Unknown column 'b.vatch_id' in 'field list'
+mysql> select f.faculty_id,b.batch_id from faculty_details f left join batch_details b on b.batch_faculty=concat(f.title,' ',f.name);
++------------+----------+
+| faculty_id | batch_id |
++------------+----------+
+| F001       | NULL     |
+| F002       | B001     |
+| F003       | B002     |
+| F004       | NULL     |
+| F005       | NULL     |
+| F006       | B003     |
++------------+----------+
+6 rows in set (0.00 sec)
+
+mysql> select f.faculty_id,b.batch_id from faculty_details f left join batch_details b on b.batch_faculty=concat(f.title,' ',f.name) union all
+    -> select f.faculty_id,b.batch_id from faculty_details f right join batch_details b on b.batch_faculty=concat(f.title,' ',f.name);
++------------+----------+
+| faculty_id | batch_id |
++------------+----------+
+| F001       | NULL     |
+| F002       | B001     |
+| F003       | B002     |
+| F004       | NULL     |
+| F005       | NULL     |
+| F006       | B003     |
+| F002       | B001     |
+| F003       | B002     |
+| F006       | B003     |
++------------+----------+
+9 rows in set (0.00 sec)
+
+mysql> create table student_status(student_id varchar(20),batch_id varchar(20), start_date varchar(20),end_date varchar(20),constraint f1 foreign key(batch_id) references batch_details(batch_id) on delete cascade);
+Query OK, 0 rows affected (0.13 sec)
+
+mysql> desc student_status;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| student_id | varchar(20) | YES  |     | NULL    |       |
+| batch_id   | varchar(20) | YES  | MUL | NULL    |       |
+| start_date | varchar(20) | YES  |     | NULL    |       |
+| end_date   | varchar(20) | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+4 rows in set (0.03 sec)
+
+mysql> insert into student_status values('S001','B001','2018-01-01','2018-12-31');
+Query OK, 1 row affected (0.05 sec)
+
+mysql> insert into student_status values('S002','B001','2018-01-02','2018-12-31');
+Query OK, 1 row affected (0.33 sec)
+
+mysql> insert into student_status values('S003','B002','2018-06-25','2018-12-31');
+Query OK, 1 row affected (0.05 sec)
+
+mysql> insert into student_status values('S004','B003','2018-07-01','2018-12-31');
+Query OK, 1 row affected (0.30 sec)
+
+mysql> insert into student_status values('S005','B003','2018-07-01','2018-12-31');
+Query OK, 1 row affected (0.14 sec)
+
+mysql> create table student_details(student_id varchar(20) primary key,title varchar(7),name varchar(30),email varchar(100),password varchar(20));
+Query OK, 0 rows affected (0.59 sec)
+
+mysql> desc student_details;
++------------+--------------+------+-----+---------+-------+
+| Field      | Type         | Null | Key | Default | Extra |
++------------+--------------+------+-----+---------+-------+
+| student_id | varchar(20)  | NO   | PRI | NULL    |       |
+| title      | varchar(7)   | YES  |     | NULL    |       |
+| name       | varchar(30)  | YES  |     | NULL    |       |
+| email      | varchar(100) | YES  |     | NULL    |       |
+| password   | varchar(20)  | YES  |     | NULL    |       |
++------------+--------------+------+-----+---------+-------+
+5 rows in set (0.05 sec)
+
+mysql> alter table student_status add faculty_id varchar(20);
+Query OK, 5 rows affected (0.30 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select *from student_status;
++------------+----------+------------+------------+------------+
+| student_id | batch_id | start_date | end_date   | faculty_id |
++------------+----------+------------+------------+------------+
+| S001       | B001     | 2018-01-01 | 2018-12-31 | NULL       |
+| S002       | B001     | 2018-01-02 | 2018-12-31 | NULL       |
+| S003       | B002     | 2018-06-25 | 2018-12-31 | NULL       |
+| S004       | B003     | 2018-07-01 | 2018-12-31 | NULL       |
+| S005       | B003     | 2018-07-01 | 2018-12-31 | NULL       |
++------------+----------+------------+------------+------------+
+5 rows in set (0.00 sec)
+
+mysql> select *from batch_details;
++----------+---------------------+-----------+
+| batch_id | batch_faculty       | dept_name |
++----------+---------------------+-----------+
+| B001     | Mrs. Isha Kar       | Comp      |
+| B002     | Mr. Shubhankar Sant | Comp      |
+| B003     | Ms. Neha D          | IT        |
++----------+---------------------+-----------+
+3 rows in set (0.00 sec)
+
+mysql> select *from faculty_details;
++------------+-------+-----------------+----------+--------+---------------+------------+---------------------------+----------+
+| faculty_id | title | name            | location | track  | qualification | Experience | email                     | password |
++------------+-------+-----------------+----------+--------+---------------+------------+---------------------------+----------+
+| F001       | Mr.   | Pankaj Ghosh    | Pune     | Java   | B.Tech.       |         12 | pankaj.ghosh@alliance.com | fact@123 |
+| F002       | Mrs.  | Isha Kar        | Pune     | SQL    | B.Tech.       |         12 | tinak96@alliance.com      | tina@123 |
+| F003       | Mr.   | Shubhankar Sant | Pune     | Python | B.Tech.       |          2 | scs96@alliance.com        | scs@123  |
+| F004       | Ms.   | Isha Joshi      | Mumbai   | Python | B.Sc.         |          2 | isha@alliance.com         | isha@123 |
+| F005       | Mr.   | John Cena       | Nashik   | Java   | B.Sc.         |          6 | jc@alliance.com           | jc@123   |
+| F006       | Ms.   | Neha D          | Mumbai   | C++    | B.Tech.       |          8 | nd5@alliance.com          | nd5@123  |
++------------+-------+-----------------+----------+--------+---------------+------------+---------------------------+----------+
+6 rows in set (0.00 sec)
+
+mysql> update student_status set faculty_id='F002' where student_id='S001';
+Query OK, 1 row affected (0.09 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update student_status set faculty_id='F002' where student_id='S002';
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update student_status set faculty_id='F003' where student_id='S003';
+Query OK, 1 row affected (0.06 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update student_status set faculty_id='F006' where student_id='S004';
+Query OK, 1 row affected (0.06 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update student_status set faculty_id='F006' where student_id='S005';
+Query OK, 1 row affected (0.06 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select *from student_status;
++------------+----------+------------+------------+------------+
+| student_id | batch_id | start_date | end_date   | faculty_id |
++------------+----------+------------+------------+------------+
+| S001       | B001     | 2018-01-01 | 2018-12-31 | F002       |
+| S002       | B001     | 2018-01-02 | 2018-12-31 | F002       |
+| S003       | B002     | 2018-06-25 | 2018-12-31 | F003       |
+| S004       | B003     | 2018-07-01 | 2018-12-31 | F006       |
+| S005       | B003     | 2018-07-01 | 2018-12-31 | F006       |
++------------+----------+------------+------------+------------+
+5 rows in set (0.00 sec)
+
+mysql> select *from s.student_status,b.batch_details from student_status s inner join batch_details b on s.batch_id=b.batch_id;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'from student_status s inner join batch_details b on s.batch_id=b.batch_id' at line 1
+mysql> select *from student_status s join batch_details b on s.batch_id=b.batch_id;
++------------+----------+------------+------------+------------+----------+---------------------+-----------+
+| student_id | batch_id | start_date | end_date   | faculty_id | batch_id | batch_faculty       | dept_name |
++------------+----------+------------+------------+------------+----------+---------------------+-----------+
+| S001       | B001     | 2018-01-01 | 2018-12-31 | F002       | B001     | Mrs. Isha Kar       | Comp      |
+| S002       | B001     | 2018-01-02 | 2018-12-31 | F002       | B001     | Mrs. Isha Kar       | Comp      |
+| S003       | B002     | 2018-06-25 | 2018-12-31 | F003       | B002     | Mr. Shubhankar Sant | Comp      |
+| S004       | B003     | 2018-07-01 | 2018-12-31 | F006       | B003     | Ms. Neha D          | IT        |
+| S005       | B003     | 2018-07-01 | 2018-12-31 | F006       | B003     | Ms. Neha D          | IT        |
++------------+----------+------------+------------+------------+----------+---------------------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> select s.student_id,f.faculty_id from student_status s right join faculty_details f on s.faculty_id=f.faculty_id;
++------------+------------+
+| student_id | faculty_id |
++------------+------------+
+| NULL       | F001       |
+| S001       | F002       |
+| S002       | F002       |
+| S003       | F003       |
+| NULL       | F004       |
+| NULL       | F005       |
+| S004       | F006       |
+| S005       | F006       |
++------------+------------+
+8 rows in set (0.00 sec)
+
+mysql> select s.student_id,f.faculty_id from student_status s left join faculty_details f on s.faculty_id=f.faculty_id;
++------------+------------+
+| student_id | faculty_id |
++------------+------------+
+| S001       | F002       |
+| S002       | F002       |
+| S003       | F003       |
+| S004       | F006       |
+| S005       | F006       |
++------------+------------+
+5 rows in set (0.00 sec)
+
+mysql> select s.student_id,f.faculty_id from student_status s left join faculty_details f on s.faculty_id=f.faculty_id union all
+    -> select s.student_id,f.faculty_id from student_status s right join faculty_details f on s.faculty_id=f.faculty_id;
++------------+------------+
+| student_id | faculty_id |
++------------+------------+
+| S001       | F002       |
+| S002       | F002       |
+| S003       | F003       |
+| S004       | F006       |
+| S005       | F006       |
+| NULL       | F001       |
+| S001       | F002       |
+| S002       | F002       |
+| S003       | F003       |
+| NULL       | F004       |
+| NULL       | F005       |
+| S004       | F006       |
+| S005       | F006       |
++------------+------------+
+13 rows in set (0.00 sec)
+
+mysql>

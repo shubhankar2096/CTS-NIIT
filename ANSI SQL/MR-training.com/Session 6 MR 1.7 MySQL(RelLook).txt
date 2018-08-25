@@ -1,0 +1,17 @@
+mysql> select *from faculty_lstatus s1 where s1.name in(select s2.name from faculty_details s2 where s1.name=s2.name);
++------------+-------+--------------+----------+-------+---------------+------------+---------------------------+----------+
+| faculty_id | title | name         | location | track | qualification | Experience | email                     | password |
++------------+-------+--------------+----------+-------+---------------+------------+---------------------------+----------+
+| F001       | Mr.   | Pankaj Ghosh | Pune     | Java  | B.Tech.       |         12 | pankaj.ghosh@alliance.com | fact@123 |
+| F002       | Mrs.  | Isha Kar     | Pune     | SQL   | B.Tech.       |         12 | tinak96@alliance.com      | tina@123 |
++------------+-------+--------------+----------+-------+---------------+------------+---------------------------+----------+
+2 rows in set (0.00 sec)
+
+mysql> select faculty_id,faculty_rating from faculty_feedback4 where faculty_id in(select faculty_id from student_status);
++------------+----------------+
+| faculty_id | faculty_rating |
++------------+----------------+
+| F002       |              8 |
+| F003       |              5 |
++------------+----------------+
+2 rows in set (0.01 sec)

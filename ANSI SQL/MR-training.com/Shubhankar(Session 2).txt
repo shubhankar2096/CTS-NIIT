@@ -1,0 +1,71 @@
+Exercise 1:-
+
+
+mysql> create table Faculty_Details(Faculty_Id varchar(33) primary key,title varchar(7),name varchar(30),location varchar(30),track varchar(15),Qualification varchar(100),Experience int,email varchar(100),password varchar(20));
+
+mysql> create table batch_details(batch_id varchar(20) primary key,batch_faculty varchar(30),dept_name varchar(30));
+
+mysql> create table module_details(module_id varchar(20) primary key,module_name varchar(40),module_duration int);
+
+mysql> create table student_details(student_id varchar(20) primary key,title varchar(7),name varchar(30),location varchar(30),track varchar(15),qualification varchar(200),email varchar(100),password varchar(20));
+
+mysql> create table Questions(question_id varchar(20) not null unique,module_id varchar(20),Question_text varchar(900),foreign key(module_id) references module_details(module_id));
+
+mysql> create table student_status(student_id varchar(20),module_id varchar(20), start_date varchar(20),end_date varchar(20), AFeedbackGiven varchar(20),TFeedbackGiven varchar(20),foreign key(student_id) references student_details(student_id),foreign key(module_id) references module_details(module_id));
+
+mysql> create table if not exists faculty_feedback1(Faculty_Id varchar(20),question_id varchar(20),batch_id varchar(20),module_id varchar(20),faculty_rating int, constraint c1 foreign key(Faculty_Id) references faculty_details(Faculty_Id));
+
+mysql> create table login_details(user_id varchar(20) primary key,user_passwd varchar(20));
+
+
+mysql> create table if not exists faculty_feedback4(Faculty_Id varchar(20),question_id varchar(20),batch_id varchar(20),module_id varchar(20),faculty_rating int, foreign key(Faculty_Id) references faculty_details(Faculty_Id),foreign key(batch_id) references batch_details(batch_id));
+
+mysql> alter table faculty_feedback add foreign key(Faculty_Id) references faculty_details(Faculty_Id);
+
+mysql> alter table faculty_feedback add foreign key(question_id) references questions(question_id);
+
+mysql> alter table faculty_feedback add foreign key(batch_id) references batch_details(batch_id);
+
+mysql> alter table faculty_feedback add foreign key(module_id) references module_details(module_id);
+
+
+Eercise 2:-
+
+mysql> alter table student_status add batch_id varchar(20);
+
+mysql> alter table student_status add foreign key(batch_id) references batch_details(batch_id);
+
+mysql> alter table student_status add faculty_id varchar(20);
+
+mysql> alter table student_status add StartDate date;
+
+mysql> alter table student_status add foreign key(faculty_id) references faculty_details(Faculty_Id);
+
+mysql> create table if not exists faculty_feedback(student_id varchar(20),question_id varchar(20),batch_id varchar(20),module_id varchar(20),student_rating int,foreign key(student_id) references faculty_details(student_details),foreign key(question_id) references questions(question_id),foreign key(module_id) 
+
+
+mysql> alter table student_status modify start_date date;
+
+mysql> alter table student_status modify end_date date;
+
+
+mysql> insert into faculty_details values('F001','Mr.','Pankaj Ghosh','Pune','Java','B.Tech.',12,'pankaj.ghosh@alliance.com','fact@123');
+
+
+mysql> insert into batch_details values('B001','Mrs.Swati Roy','MSP');
+
+mysql> insert into module_details values('O10SQL','Oracle 10 g SQL',16);
+
+mysql> insert into student_details values('A001','Miss','Gayatri','Gurgaon','Java','B.Tech.','gayatri.narayan@hp.com','tne1@123');
+
+
+Ex 4:-
+
+mysql> update faculty_details set password='nn@123' where Faculty_Id='F001';
+
+
+mysql> insert into student_status values('A001','O10SQL','2000-12-15','2000-12-25','Y','N','B001','F001','2000-12-15');
+
+Ex 5:-
+
+mysql> delete from student_status where student_id='A001' and module_id='O10SQL' and start_date='2005-12-15' and end_date='2005-12-25';

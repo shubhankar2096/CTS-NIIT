@@ -1,0 +1,49 @@
+EX 1:-
+
+create table faculty_details(faculty_id varchar(20) primary key,title varchar(7),name varchar(30),location varchar(30),track varchar(15),qualification varchar(100),Experience int,email varchar(100),password varchar(20));
+
+create table batch_details(batch_id varchar(20) primary key not null,batch_faculty varchar(30) not null,dept_name varchar(30) not null);
+
+create table module_details(module_id varchar(20) primary key not null,module_name varchar(40) not null,module_duration int not null);
+
+create table student_details(student_id varchar(20) primary key not null,title varchar(7) not null,stu_name varchar(30) not null,stu_location varchar(30) not null,stu_track varchar(15) not null,stu_qualification varchar(200) not null,stu_email varchar(100) not null,stu_password varchar(20) not null);
+
+create table Questions(question_id varchar(20) primary key not null,module_id varchar(20),Question_text varchar(900) not null,foreign key(module_id) references module_details(module_id));
+
+create table student_status(student_id varchar(20) not null,module_id varchar(20) not null, batch_id varchar(20) not null, faculty_id varchar(20) not null,start_date varchar(20),end_date varchar(20), AFeedbackGiven varchar(20),TFeedbackGiven varchar(20),foreign key(student_id) references student_details(student_id),foreign key(module_id) references module_details(module_id),foreign key(batch_id) references batch_details(batch_id),foreign key(faculty_id) references faculty_details(faculty_id));
+
+
+create table if not exists faculty_feedback(faculty_id varchar(20) not null,question_id varchar(20) not null,batch_id varchar(20) not null,module_id varchar(20) not null,faculty_rating int not null);
+
+alter table faculty_feedback add foreign key(faculty_id) references faculty_details(faculty_id);
+
+alter table faculty_feedback add foreign key(question_id) references Questions(question_id);
+
+alter table faculty_feedback add foreign key(batch_id) references batch_details(batch_id);
+
+alter table faculty_feedback add foreign key(module_id) references module_details(module_id);
+
+create table if not exists student_feedback1(student_id varchar(20) not null,question_id varchar(20) default null not null,module_id varchar(20) not null,student_rating int not null);
+
+alter table student_feedback add foreign key(student_id) references student_details(student_id);
+
+alter table student_feedback add foreign key(question_id) references Questions(question_id);
+
+alter table student_feedback add foreign key(module_id) references module_details(module_id);
+
+
+
+
+EX 2:-
+
+create table product(pid int(8) primary key,pname varchar(30),price int(5) not null);
+
+create table customer(cid varchar(8) primary key,pid int(8),cname varchar(40),constraint f1 foreign key(pid) references product(pid));
+
+insert into product values(1,'Mobile',3350),(2,'Laptop',41360);
+
+insert into product values(3,'Desktop');
+
+alter table customer drop foreign key f1;
+
+insert into customer values('C001',1,'Tom'),('C002',11,'Tim');

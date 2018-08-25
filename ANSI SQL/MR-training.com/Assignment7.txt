@@ -1,0 +1,198 @@
+Enter password: ************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 25
+Server version: 5.5.51-log MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2016, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use niit;
+Database changed
+mysql> select * from faculty_feedback;
+Empty set (0.02 sec)
+
+mysql> select * from faculty_Lstatus;
++------------+-------+--------------+------------------+---------------+------------------------+--------------------+-----------------+------------------+
+| Faculty_Id | Title | Faculty_Name | Faculty_Location | Faculty_Track | Faculty_Qualification  | Faculty_Experiance | Faculty_Email   | Faculty_Password |
++------------+-------+--------------+------------------+---------------+------------------------+--------------------+-----------------+------------------+
+| F001       | Mr.   | Farook       | Ooty             | Java          | Bachelor of Technology |                  9 | farook@niit.com | fac011           |
+| F002       | Mr.   | Durai        | Chennai          | Java          | Bachelor of Technology |                  8 | durais@niit.com | fac012           |
+| F003       | Mr.   | Jayaprasad K | Mumbai           | Testing       | Bachelor of Technology |                 19 | jaya@niit.com   | fac013           |
++------------+-------+--------------+------------------+---------------+------------------------+--------------------+-----------------+------------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from batch_details;
+ERROR 1146 (42S02): Table 'niit.batch_details' doesn't exist
+mysql> select * from batchdetails;
++----------+--------------------+-----------------+
+| Batch_id | Batch_faculty      | Batch_DEPT_Name |
++----------+--------------------+-----------------+
+| B001     | MRS.SWATI ROY      | MSP             |
+| B002     | MRS.ARURNA K       | HEALTHCARE      |
+| B003     | MR.RAJESH KRISHNAN | LIFE SCIENCES   |
+| B004     | MR.SACHIN SHETTY   | BFS             |
+| B005     | MR.RAMESH PATEL    | COMMUNICATIONS  |
++----------+--------------------+-----------------+
+5 rows in set (0.03 sec)
+
+mysql> insert into batchdetails value('B006','MRS.SUSAN CHERIAN','RETAIL & HOSPITALITY'
+    -> 'B007','MRS.SAMPADA JAIN','MSP'
+    -> 'B008','MRS.KAVITA REGE','BPO'
+    -> 'B009','MR.RAVI SEJPAL','MSP';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 4
+mysql> inset into batchdetails value('B006','MRS.SUSAN CHERIAN','RETAIL & HOSPITALITY');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'inset into batchdetails value('B006','MRS.SUSAN CHERIAN','RETAIL & HOSPITALITY')' at line 1
+mysql> insert into batchdetails value('B006','MRS.SUSAN CHERIAN','RETAIL & HOSPITALITY');
+Query OK, 1 row affected (0.13 sec)
+
+mysql> insert into batchdetails value('B007','MRS.SAMPADA JAIN','MSP');
+Query OK, 1 row affected (0.03 sec)
+
+mysql> insert into batchdetails value('B008','MRS.KAVITA REGE','BPO');
+Query OK, 1 row affected (0.05 sec)
+
+mysql> insert into batchdetails value('B009','MR.RAVI SEJPAL','MSP');
+Query OK, 1 row affected (0.12 sec)
+
+mysql>  select f.faculty_id,b.batch_id from facultydetails f join batchdetails b on concat(f.title,f.faculty_name)=b.batch_faculty;
+Empty set (0.00 sec)
+
+mysql> select * from batchdetails;
++----------+--------------------+----------------------+
+| Batch_id | Batch_faculty      | Batch_DEPT_Name      |
++----------+--------------------+----------------------+
+| B001     | MRS.SWATI ROY      | MSP                  |
+| B002     | MRS.ARURNA K       | HEALTHCARE           |
+| B003     | MR.RAJESH KRISHNAN | LIFE SCIENCES        |
+| B004     | MR.SACHIN SHETTY   | BFS                  |
+| B005     | MR.RAMESH PATEL    | COMMUNICATIONS       |
+| B006     | MRS.SUSAN CHERIAN  | RETAIL & HOSPITALITY |
+| B007     | MRS.SAMPADA JAIN   | MSP                  |
+| B008     | MRS.KAVITA REGE    | BPO                  |
+| B009     | MR.RAVI SEJPAL     | MSP                  |
++----------+--------------------+----------------------+
+9 rows in set (0.00 sec)
+
+mysql> select * from facultydetails;
++------------+-------+----------------------+------------------+---------------+--------------------------------------------+--------------------+-----------------------------------+------------------+
+| Faculty_id | Title | Faculty_Name         | Faculty_Location | Faculty_Track | Faculty_Qualification                      | Faculty_Experience | Faculty_Email                     | Faculty_password |
++------------+-------+----------------------+------------------+---------------+--------------------------------------------+--------------------+-----------------------------------+------------------+
+| F001       | Mr.   | PANKAJ GHOSH         | Chennai          | Java          | Bachelorof Technology                      |                 12 | Pankaj.Ghosh@alliance.com         | nn4@123          |
+| F002       | Mr.   | SANJAY RADHAKRISHNAN | Chennai          | DotNet        | Bachelor of Technology                     |                 12 | Sanjay.Radhakrishnan@alliance.com | fac2@123         |
+| F003       | Mrs.  | NANDINI NAIR         | Kolkata          | Java          | Master of Computer Applications            |                  9 | Nandini.Nair@alliance.com         | fac4@123         |
+| F005       | Miss. | ANITHA PAREKH        | Hyderabad        | Testing       | Master of Computer Applications            |                  6 | Anitha.Parekh@alliance.com        | fac5@123         |
+| F007       | Ms.   | MEENA KULKARNI       | Coimbatore       | Testing       | Bachelor of Technology                     |                  5 | Meena.Kulkarni@alliance.com       | fac7@123         |
+| F008       | Mr.   | Abc                  | Mumbai           | Java          | Masterof Science In Information Technology |                 12 | Sagar.Menon@alliance.com          | fac8@123         |
+| F009       | Mr.   | Null                 | Mumbai           | Java          | Masterof Science In Information Technology |                 12 | Sagar.Menone@alliance.com         | fac8@123         |
++------------+-------+----------------------+------------------+---------------+--------------------------------------------+--------------------+-----------------------------------+------------------+
+7 rows in set (0.00 sec)
+
+mysql> student_status;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'student_status' at line 1
+mysql> select * from student_status;
++------------+-----------+------------+------------+----------------+----------------+
+| student_id | Module_id | Start_date | end_date   | AfeedbackGiven | TfeedbackGiven |
++------------+-----------+------------+------------+----------------+----------------+
+| A001       | O10SQL    | 2000-12-15 | 2000-12-25 | B001           | F001           |
+| A002       | 10SQL     | 2000-12-15 | 2000-12-25 | B001           | F001           |
+| A003       | O10SQL    | 2000-12-15 | 2000-12-25 | B001           | F001           |
+| A001       | O10PLSQL  | 2001-02-01 | 2001-02-12 | B002           | F002           |
+| A002       | O10PLSQL  | 2001-02-01 | 2001-02-12 | B002           | F002           |
+| A003       | O10PLSQL  | 2001-02-01 | 2001-02-12 | B002           | F002           |
+| A001       | J2SE      | 2002-08-20 | 2002-10-25 | B003           | F003           |
+| A002       | J2SE      | 2002-08-20 | 2002-10-25 | B003           | F003           |
++------------+-----------+------------+------------+----------------+----------------+
+8 rows in set (0.00 sec)
+
+mysql> create view v1 as select student_id,Afeedback,Tfeedbackgiven from student_status;
+ERROR 1054 (42S22): Unknown column 'Afeedback' in 'field list'
+mysql> create view v1 as select student_id,Afeedbackgiven,Tfeedbackgiven from student_status;
+Query OK, 0 rows affected (0.17 sec)
+
+mysql> select * from v1;
++------------+----------------+----------------+
+| student_id | Afeedbackgiven | Tfeedbackgiven |
++------------+----------------+----------------+
+| A001       | B001           | F001           |
+| A002       | B001           | F001           |
+| A003       | B001           | F001           |
+| A001       | B002           | F002           |
+| A002       | B002           | F002           |
+| A003       | B002           | F002           |
+| A001       | B003           | F003           |
+| A002       | B003           | F003           |
++------------+----------------+----------------+
+8 rows in set (0.04 sec)
+
+mysql> create view v1 as select student_id,Afeedbackgiven,Tfeedbackgiven from student_status where Afeedbackgiven='B004';
+ERROR 1050 (42S01): Table 'v1' already exists
+mysql> alter view v1 as select student_id,Afeedbackgiven,Tfeedbackgiven from student_status where Afeedbackgiven='B004';
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> select * from student_status;
++------------+-----------+------------+------------+----------------+----------------+
+| student_id | Module_id | Start_date | end_date   | AfeedbackGiven | TfeedbackGiven |
++------------+-----------+------------+------------+----------------+----------------+
+| A001       | O10SQL    | 2000-12-15 | 2000-12-25 | B001           | F001           |
+| A002       | 10SQL     | 2000-12-15 | 2000-12-25 | B001           | F001           |
+| A003       | O10SQL    | 2000-12-15 | 2000-12-25 | B001           | F001           |
+| A001       | O10PLSQL  | 2001-02-01 | 2001-02-12 | B002           | F002           |
+| A002       | O10PLSQL  | 2001-02-01 | 2001-02-12 | B002           | F002           |
+| A003       | O10PLSQL  | 2001-02-01 | 2001-02-12 | B002           | F002           |
+| A001       | J2SE      | 2002-08-20 | 2002-10-25 | B003           | F003           |
+| A002       | J2SE      | 2002-08-20 | 2002-10-25 | B003           | F003           |
++------------+-----------+------------+------------+----------------+----------------+
+8 rows in set (0.00 sec)
+
+mysql> select * from v1;
+Empty set (0.00 sec)
+
+mysql> alter view v1 as select student_id,Afeedbackgiven,Tfeedbackgiven from student_status where Afeedbackgiven='B003';
+Query OK, 0 rows affected (0.15 sec)
+
+mysql> select * from v1;
++------------+----------------+----------------+
+| student_id | Afeedbackgiven | Tfeedbackgiven |
++------------+----------------+----------------+
+| A001       | B003           | F003           |
+| A002       | B003           | F003           |
++------------+----------------+----------------+
+2 rows in set (0.00 sec)
+
+mysql> drop view vi;
+ERROR 1051 (42S02): Unknown table 'vi'
+mysql> drop view v1;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> create index i1 on studentdetails(student_name);
+Query OK, 0 rows affected (0.23 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> show indexes from studentdetails;
++----------------+------------+----------+--------------+--------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+| Table          | Non_unique | Key_name | Seq_in_index | Column_name  | Collation | Cardinality | Sub_part | Packed | Null | Index_type | Comment | Index_comment |
++----------------+------------+----------+--------------+--------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+| studentdetails |          1 | i1       |            1 | Student_Name | A         |           7 |     NULL | NULL   | YES  | BTREE      |         |               |
++----------------+------------+----------+--------------+--------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+1 row in set (0.00 sec)
+
+mysql> create unique index i1 on studentdetails(student_name);
+ERROR 1061 (42000): Duplicate key name 'i1'
+mysql> create unique index i2 on studentdetails(student_name);
+Query OK, 0 rows affected (0.36 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> drop index i2 from student_details;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'from student_details' at line 1
+mysql> drop index i2 from studentdetails;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'from studentdetails' at line 1
+mysql> drop index i2 on studentdetails;
+Query OK, 0 rows affected (0.33 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql>

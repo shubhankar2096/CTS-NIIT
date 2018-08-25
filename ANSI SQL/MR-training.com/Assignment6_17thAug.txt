@@ -1,0 +1,1858 @@
+Enter password: ************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 21
+Server version: 5.5.51-log MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2016, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> create table (Employee_id varchar(10),First_name varchar(20),Last_name varchar(20), Salary int, Joining_date datae, end_date date);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(Employee_id varchar(10),First_name varchar(20),Last_name varchar(20), Salary in' at line 1
+mysql> create Employee (Employee_id varchar(10),First_name varchar(20),Last_name varchar(20), Salary int, Joining_date datae, end_date date);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Employee (Employee_id varchar(10),First_name varchar(20),Last_name varchar(20), ' at line 1
+mysql> create table Employee (Employee_id varchar(10),First_name varchar(20),Last_name varchar(20), Salary int, Joining_date datae, end_date date);
+ERROR 1046 (3D000): No database selected
+mysql> use niit;
+Database changed
+mysql> create table Employee (Employee_id varchar(10),First_name varchar(20),Last_name varchar(20), Salary int, Joining_date datae, end_date date);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'datae, end_date date)' at line 1
+mysql> create Employee (Employee_id varchar(10),First_name varchar(20),Last_name varchar(20), Salary int, Joining_date date, end_date date);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Employee (Employee_id varchar(10),First_name varchar(20),Last_name varchar(20), ' at line 1
+mysql> clear
+mysql> ;
+ERROR:
+No query specified
+
+mysql> ;
+ERROR:
+No query specified
+
+mysql> ;
+ERROR:
+No query specified
+
+mysql> create employee (
+    -> Employee_id varchar(10),
+    -> First_name varchar(20),
+    -> last_name varchar(20),
+    -> Joining_date date,
+    -> dept varchar(20));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'employee (
+Employee_id varchar(10),
+First_name varchar(20),
+last_name varchar(20' at line 1
+mysql> create table employee (emp_id varchar(20), First_name varchar(20), Last_name varchar(20),joining_date varchar(20), Department varchar(20));
+Query OK, 0 rows affected (0.49 sec)
+
+mysql> create table incentive (Employee_Ref_id varchar(20), incentive_date varchar(20), incentive_Amount int);
+Query OK, 0 rows affected (0.19 sec)
+
+mysql> insert into employee value(1,'Sushma','Singh','15-12-2107','IT');
+Query OK, 1 row affected (0.17 sec)
+
+mysql> insert into employee value(2,'Sujay','Dangrikar','15-9-2107','Sales');
+Query OK, 1 row affected (0.04 sec)
+
+mysql> insert into employee value(3,'Rahul','Kolarkar','15-1-2118','Atomation');
+Query OK, 1 row affected (0.06 sec)
+
+mysql> insert into employee value(4,'Jisha','Thomas','15-1-2118','Atomation');
+Query OK, 1 row affected (0.16 sec)
+
+mysql> Select * from employee;
++--------+------------+-----------+--------------+------------+
+| emp_id | First_name | Last_name | joining_date | Department |
++--------+------------+-----------+--------------+------------+
+| 1      | Sushma     | Singh     | 15-12-2107   | IT         |
+| 2      | Sujay      | Dangrikar | 15-9-2107    | Sales      |
+| 3      | Rahul      | Kolarkar  | 15-1-2118    | Atomation  |
+| 4      | Jisha      | Thomas    | 15-1-2118    | Atomation  |
++--------+------------+-----------+--------------+------------+
+4 rows in set (0.00 sec)
+
+mysql> Select First_name, Last_name from employee;
++------------+-----------+
+| First_name | Last_name |
++------------+-----------+
+| Sushma     | Singh     |
+| Sujay      | Dangrikar |
+| Rahul      | Kolarkar  |
+| Jisha      | Thomas    |
++------------+-----------+
+4 rows in set (0.00 sec)
+
+mysql> Select First_name as Employee_name from employee;
++---------------+
+| Employee_name |
++---------------+
+| Sushma        |
+| Sujay         |
+| Rahul         |
+| Jisha         |
++---------------+
+4 rows in set (0.00 sec)
+
+mysql> select Upper(First_name) from employee;
++-------------------+
+| Upper(First_name) |
++-------------------+
+| SUSHMA            |
+| SUJAY             |
+| RAHUL             |
+| JISHA             |
++-------------------+
+4 rows in set (0.33 sec)
+
+mysql> select lower(First_name) from employee;
++-------------------+
+| lower(First_name) |
++-------------------+
+| sushma            |
+| sujay             |
+| rahul             |
+| jisha             |
++-------------------+
+4 rows in set (0.00 sec)
+
+mysql> select distinct department from employee;
++------------+
+| department |
++------------+
+| IT         |
+| Sales      |
+| Atomation  |
++------------+
+3 rows in set (0.00 sec)
+
+mysql> Select First_name from employee where like '___,3';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'like '___,3'' at line 1
+mysql> Select substring(first_name, 1,3);
+ERROR 1054 (42S22): Unknown column 'first_name' in 'field list'
+mysql> Select substring('first_name', 1,3);
++------------------------------+
+| substring('first_name', 1,3) |
++------------------------------+
+| fir                          |
++------------------------------+
+1 row in set (0.10 sec)
+
+mysql> Select substring(first_name, 1,3) from employee;
++----------------------------+
+| substring(first_name, 1,3) |
++----------------------------+
+| Sus                        |
+| Suj                        |
+| Rah                        |
+| Jis                        |
++----------------------------+
+4 rows in set (0.00 sec)
+
+mysql> select psition('o' in 'Last_name') from employee;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Last_name') from employee' at line 1
+mysql> select position('o'in 'Last_name') from employee;
++-----------------------------+
+| position('o'in 'Last_name') |
++-----------------------------+
+|                           0 |
+|                           0 |
+|                           0 |
+|                           0 |
++-----------------------------+
+4 rows in set (0.10 sec)
+
+mysql> select position('o'in 'Kolarkar') from employee;
++----------------------------+
+| position('o'in 'Kolarkar') |
++----------------------------+
+|                          2 |
+|                          2 |
+|                          2 |
+|                          2 |
++----------------------------+
+4 rows in set (0.00 sec)
+
+mysql> select position('o'in Last_name) from employee;
++---------------------------+
+| position('o'in Last_name) |
++---------------------------+
+|                         0 |
+|                         0 |
+|                         2 |
+|                         3 |
++---------------------------+
+4 rows in set (0.00 sec)
+
+mysql> select rtrim(First_name) from employee;
++-------------------+
+| rtrim(First_name) |
++-------------------+
+| Sushma            |
+| Sujay             |
+| Rahul             |
+| Jisha             |
++-------------------+
+4 rows in set (0.11 sec)
+
+mysql> select ltrim(First_name) from employee;
++-------------------+
+| ltrim(First_name) |
++-------------------+
+| Sushma            |
+| Sujay             |
+| Rahul             |
+| Jisha             |
++-------------------+
+4 rows in set (0.03 sec)
+
+mysql> select length(First_name) from employee;
++--------------------+
+| length(First_name) |
++--------------------+
+|                  6 |
+|                  5 |
+|                  5 |
+|                  5 |
++--------------------+
+4 rows in set (0.10 sec)
+
+mysql> replace (first_name, 'o','$') from employee;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(first_name, 'o','$') from employee' at line 1
+mysql> replace ('first_name', 'o','$') from employee;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '('first_name', 'o','$') from employee' at line 1
+mysql>
+mysql> select replace ('first_name', 'o','$') from employee;
++---------------------------------+
+| replace ('first_name', 'o','$') |
++---------------------------------+
+| first_name                      |
+| first_name                      |
+| first_name                      |
+| first_name                      |
++---------------------------------+
+4 rows in set (0.03 sec)
+
+mysql> select replace (first_name, 'o','$') from employee;
++-------------------------------+
+| replace (first_name, 'o','$') |
++-------------------------------+
+| Sushma                        |
+| Sujay                         |
+| Rahul                         |
+| Jisha                         |
++-------------------------------+
+4 rows in set (0.00 sec)
+
+mysql> select replace (first_name, 'u','$') from employee;
++-------------------------------+
+| replace (first_name, 'u','$') |
++-------------------------------+
+| S$shma                        |
+| S$jay                         |
+| Rah$l                         |
+| Jisha                         |
++-------------------------------+
+4 rows in set (0.00 sec)
+
+mysql> select * from employee order by first_name asc;
++--------+------------+-----------+--------------+------------+
+| emp_id | First_name | Last_name | joining_date | Department |
++--------+------------+-----------+--------------+------------+
+| 4      | Jisha      | Thomas    | 15-1-2118    | Atomation  |
+| 3      | Rahul      | Kolarkar  | 15-1-2118    | Atomation  |
+| 2      | Sujay      | Dangrikar | 15-9-2107    | Sales      |
+| 1      | Sushma     | Singh     | 15-12-2107   | IT         |
++--------+------------+-----------+--------------+------------+
+4 rows in set (0.09 sec)
+
+mysql> select * from employee order by first_name decs;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'decs' at line 1
+mysql> select * from employee order by first_name desc;
++--------+------------+-----------+--------------+------------+
+| emp_id | First_name | Last_name | joining_date | Department |
++--------+------------+-----------+--------------+------------+
+| 1      | Sushma     | Singh     | 15-12-2107   | IT         |
+| 2      | Sujay      | Dangrikar | 15-9-2107    | Sales      |
+| 3      | Rahul      | Kolarkar  | 15-1-2118    | Atomation  |
+| 4      | Jisha      | Thomas    | 15-1-2118    | Atomation  |
++--------+------------+-----------+--------------+------------+
+4 rows in set (0.00 sec)
+
+mysql> alter table employee add coloumn Salary int;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Salary int' at line 1
+mysql> alter employee add coloumn Salary int;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'employee add coloumn Salary int' at line 1
+mysql> alter table employee add column Salary int;
+Query OK, 4 rows affected (0.57 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> update table employee set salary=50000 where emp_id=1;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'table employee set salary=50000 where emp_id=1' at line 1
+mysql> update employee set salary=50000 where emp_id=1;
+Query OK, 1 row affected (0.23 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee set salary=10000 where emp_id=2;
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee set salary=100000 where emp_id=3;
+Query OK, 1 row affected (0.12 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update table employee set salary=20000 where emp_id=4;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'table employee set salary=20000 where emp_id=4' at line 1
+mysql> update employee set salary=20000 where emp_id=4;
+Query OK, 1 row affected (0.12 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from employee;
++--------+------------+-----------+--------------+------------+--------+
+| emp_id | First_name | Last_name | joining_date | Department | Salary |
++--------+------------+-----------+--------------+------------+--------+
+| 1      | Sushma     | Singh     | 15-12-2107   | IT         |  50000 |
+| 2      | Sujay      | Dangrikar | 15-9-2107    | Sales      |  10000 |
+| 3      | Rahul      | Kolarkar  | 15-1-2118    | Atomation  | 100000 |
+| 4      | Jisha      | Thomas    | 15-1-2118    | Atomation  |  20000 |
++--------+------------+-----------+--------------+------------+--------+
+4 rows in set (0.00 sec)
+
+mysql> select * from employee order by first_name and salary;
++--------+------------+-----------+--------------+------------+--------+
+| emp_id | First_name | Last_name | joining_date | Department | Salary |
++--------+------------+-----------+--------------+------------+--------+
+| 1      | Sushma     | Singh     | 15-12-2107   | IT         |  50000 |
+| 2      | Sujay      | Dangrikar | 15-9-2107    | Sales      |  10000 |
+| 3      | Rahul      | Kolarkar  | 15-1-2118    | Atomation  | 100000 |
+| 4      | Jisha      | Thomas    | 15-1-2118    | Atomation  |  20000 |
++--------+------------+-----------+--------------+------------+--------+
+4 rows in set, 4 warnings (0.12 sec)
+
+mysql> select * from employee where First_name='Sushma';
++--------+------------+-----------+--------------+------------+--------+
+| emp_id | First_name | Last_name | joining_date | Department | Salary |
++--------+------------+-----------+--------------+------------+--------+
+| 1      | Sushma     | Singh     | 15-12-2107   | IT         |  50000 |
++--------+------------+-----------+--------------+------------+--------+
+1 row in set (0.00 sec)
+
+mysql> create table emp(jj date);
+ERROR 1050 (42S01): Table 'emp' already exists
+mysql> create table emp1(jj date);
+Query OK, 0 rows affected (0.12 sec)
+
+mysql> drop table emp1;
+Query OK, 0 rows affected (0.14 sec)
+
+mysql> alter table employee change joining_date date;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> alter table employee change joining_date date;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> alter table employee modify joining_date date;
+ERROR 1292 (22007): Incorrect date value: '15-12-2107' for column 'joining_date' at row 1
+mysql> alter table employee add joining_date date;
+ERROR 1060 (42S21): Duplicate column name 'joining_date'
+mysql> alter table employee drop 'Joining_date';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Joining_date'' at line 1
+mysql> alter table employee drop Joining_date;
+Query OK, 4 rows affected (0.27 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from employee;
++--------+------------+-----------+------------+--------+
+| emp_id | First_name | Last_name | Department | Salary |
++--------+------------+-----------+------------+--------+
+| 1      | Sushma     | Singh     | IT         |  50000 |
+| 2      | Sujay      | Dangrikar | Sales      |  10000 |
+| 3      | Rahul      | Kolarkar  | Atomation  | 100000 |
+| 4      | Jisha      | Thomas    | Atomation  |  20000 |
++--------+------------+-----------+------------+--------+
+4 rows in set (0.00 sec)
+
+mysql> alter table employee add joining_date date;
+Query OK, 4 rows affected (0.24 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> update table employee set joining_date 12-5-2018 where emp_id=1;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'table employee set joining_date 12-5-2018 where emp_id=1' at line 1
+mysql> update table employee set joining_date=12-5-2018 where emp_id=1;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'table employee set joining_date=12-5-2018 where emp_id=1' at line 1
+mysql> update employee set joining_date=12-5-2018 where emp_id=1;
+ERROR 1292 (22007): Incorrect date value: '-2011' for column 'joining_date' at row 1
+mysql> update employee set joining_date='12-5-2018' where emp_id=1;
+ERROR 1292 (22007): Incorrect date value: '12-5-2018' for column 'joining_date' at row 1
+mysql> update table employee set joining_date='12-5-2018' where emp_id=1;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'table employee set joining_date='12-5-2018' where emp_id=1' at line 1
+mysql> update table employee set joining_date='2011-12-1' where emp_id=1;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'table employee set joining_date='2011-12-1' where emp_id=1' at line 1
+mysql> select * from employee;
++--------+------------+-----------+------------+--------+--------------+
+| emp_id | First_name | Last_name | Department | Salary | joining_date |
++--------+------------+-----------+------------+--------+--------------+
+| 1      | Sushma     | Singh     | IT         |  50000 | NULL         |
+| 2      | Sujay      | Dangrikar | Sales      |  10000 | NULL         |
+| 3      | Rahul      | Kolarkar  | Atomation  | 100000 | NULL         |
+| 4      | Jisha      | Thomas    | Atomation  |  20000 | NULL         |
++--------+------------+-----------+------------+--------+--------------+
+4 rows in set (0.00 sec)
+
+mysql> update employee set joining_date='2011-12-1' where emp_id=1;
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee set joining_date='2018-11-3' where emp_id=2;
+Query OK, 1 row affected (0.12 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee set joining_date='2017-10-4' where emp_id=4;
+Query OK, 1 row affected (0.13 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from employee;
++--------+------------+-----------+------------+--------+--------------+
+| emp_id | First_name | Last_name | Department | Salary | joining_date |
++--------+------------+-----------+------------+--------+--------------+
+| 1      | Sushma     | Singh     | IT         |  50000 | 2011-12-01   |
+| 2      | Sujay      | Dangrikar | Sales      |  10000 | 2018-11-03   |
+| 3      | Rahul      | Kolarkar  | Atomation  | 100000 | NULL         |
+| 4      | Jisha      | Thomas    | Atomation  |  20000 | 2017-10-04   |
++--------+------------+-----------+------------+--------+--------------+
+4 rows in set (0.00 sec)
+
+mysql> select year(Joining_date),month(Joining_date),date(jioning_date) from employee;
+ERROR 1054 (42S22): Unknown column 'jioning_date' in 'field list'
+mysql> select year(Joining_date),month(Joining_date),date(joining_date) from employee;
++--------------------+---------------------+--------------------+
+| year(Joining_date) | month(Joining_date) | date(joining_date) |
++--------------------+---------------------+--------------------+
+|               2011 |                  12 | 2011-12-01         |
+|               2018 |                  11 | 2018-11-03         |
+|               NULL |                NULL | NULL               |
+|               2017 |                  10 | 2017-10-04         |
++--------------------+---------------------+--------------------+
+4 rows in set (0.01 sec)
+
+mysql> select year(Joining_date),month(Joining_date),day(joining_date) from employee;
++--------------------+---------------------+-------------------+
+| year(Joining_date) | month(Joining_date) | day(joining_date) |
++--------------------+---------------------+-------------------+
+|               2011 |                  12 |                 1 |
+|               2018 |                  11 |                 3 |
+|               NULL |                NULL |              NULL |
+|               2017 |                  10 |                 4 |
++--------------------+---------------------+-------------------+
+4 rows in set (0.00 sec)
+
+mysql> select * from employee where First_name='Sushma' and last_name='Singh';
++--------+------------+-----------+------------+--------+--------------+
+| emp_id | First_name | Last_name | Department | Salary | joining_date |
++--------+------------+-----------+------------+--------+--------------+
+| 1      | Sushma     | Singh     | IT         |  50000 | 2011-12-01   |
++--------+------------+-----------+------------+--------+--------------+
+1 row in set (0.00 sec)
+
+mysql> select * from employee where First_name not'Sushma' and last_name='Singh';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Sushma' and last_name='Singh'' at line 1
+mysql> select * from employee where First_name !='Sushma' and last_name!='Singh';
++--------+------------+-----------+------------+--------+--------------+
+| emp_id | First_name | Last_name | Department | Salary | joining_date |
++--------+------------+-----------+------------+--------+--------------+
+| 2      | Sujay      | Dangrikar | Sales      |  10000 | 2018-11-03   |
+| 3      | Rahul      | Kolarkar  | Atomation  | 100000 | NULL         |
+| 4      | Jisha      | Thomas    | Atomation  |  20000 | 2017-10-04   |
++--------+------------+-----------+------------+--------+--------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from employee where not First_name ='Sushma' and last_name!='Singh';
++--------+------------+-----------+------------+--------+--------------+
+| emp_id | First_name | Last_name | Department | Salary | joining_date |
++--------+------------+-----------+------------+--------+--------------+
+| 2      | Sujay      | Dangrikar | Sales      |  10000 | 2018-11-03   |
+| 3      | Rahul      | Kolarkar  | Atomation  | 100000 | NULL         |
+| 4      | Jisha      | Thomas    | Atomation  |  20000 | 2017-10-04   |
++--------+------------+-----------+------------+--------+--------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from employee where first_name like 'S%'
+    -> ;
++--------+------------+-----------+------------+--------+--------------+
+| emp_id | First_name | Last_name | Department | Salary | joining_date |
++--------+------------+-----------+------------+--------+--------------+
+| 1      | Sushma     | Singh     | IT         |  50000 | 2011-12-01   |
+| 2      | Sujay      | Dangrikar | Sales      |  10000 | 2018-11-03   |
++--------+------------+-----------+------------+--------+--------------+
+2 rows in set (0.03 sec)
+
+mysql> select subsrting(s,first_name);
+ERROR 1305 (42000): FUNCTION niit.subsrting does not exist
+mysql> select subsrting(s,first_name) from employee;
+ERROR 1305 (42000): FUNCTION niit.subsrting does not exist
+mysql> select first_name subsrting(s,first_name) from employee;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(s,first_name) from employee' at line 1
+mysql> select first_name where first_name like '%o%';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where first_name like '%o%'' at line 1
+mysql> select first_name where first_name like '%o%'from employee;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where first_name like '%o%'from employee' at line 1
+mysql> select first_name from employee where first_name like '%o%';
+Empty set (0.03 sec)
+
+mysql> select first_name from employee where first_name like '%s%';
++------------+
+| first_name |
++------------+
+| Sushma     |
+| Sujay      |
+| Jisha      |
++------------+
+3 rows in set (0.00 sec)
+
+mysql> select first_name from employee where first_name like '$a';
+Empty set (0.00 sec)
+
+mysql> select first_name from employee where first_name like '%a';
++------------+
+| first_name |
++------------+
+| Sushma     |
+| Jisha      |
++------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from employee where first_name like '%a' and char_length=4;
+ERROR 1054 (42S22): Unknown column 'char_length' in 'where clause'
+mysql> select * from employee where first_name like '%a' and char_length(first_name,4);
+ERROR 1582 (42000): Incorrect parameter count in the call to native function 'char_length'
+mysql> select * from employee where first_name like '%a' and char-length(first_name,4);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '-length(first_name,4)' at line 1
+mysql> select * from employee where first_name like '%a' and char_length(first_name)=4;
+Empty set (0.03 sec)
+
+mysql> select * from employee where first_name like '%a' and char_length(first_name)=5;
++--------+------------+-----------+------------+--------+--------------+
+| emp_id | First_name | Last_name | Department | Salary | joining_date |
++--------+------------+-----------+------------+--------+--------------+
+| 4      | Jisha      | Thomas    | Atomation  |  20000 | 2017-10-04   |
++--------+------------+-----------+------------+--------+--------------+
+1 row in set (0.00 sec)
+
+mysql> select * from employee where salary>80000;
++--------+------------+-----------+------------+--------+--------------+
+| emp_id | First_name | Last_name | Department | Salary | joining_date |
++--------+------------+-----------+------------+--------+--------------+
+| 3      | Rahul      | Kolarkar  | Atomation  | 100000 | NULL         |
++--------+------------+-----------+------------+--------+--------------+
+1 row in set (0.00 sec)
+
+mysql> select * from employee where salary<80000;
++--------+------------+-----------+------------+--------+--------------+
+| emp_id | First_name | Last_name | Department | Salary | joining_date |
++--------+------------+-----------+------------+--------+--------------+
+| 1      | Sushma     | Singh     | IT         |  50000 | 2011-12-01   |
+| 2      | Sujay      | Dangrikar | Sales      |  10000 | 2018-11-03   |
+| 4      | Jisha      | Thomas    | Atomation  |  20000 | 2017-10-04   |
++--------+------------+-----------+------------+--------+--------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from employee where salary between 10000 and 80000;
++--------+------------+-----------+------------+--------+--------------+
+| emp_id | First_name | Last_name | Department | Salary | joining_date |
++--------+------------+-----------+------------+--------+--------------+
+| 1      | Sushma     | Singh     | IT         |  50000 | 2011-12-01   |
+| 2      | Sujay      | Dangrikar | Sales      |  10000 | 2018-11-03   |
+| 4      | Jisha      | Thomas    | Atomation  |  20000 | 2017-10-04   |
++--------+------------+-----------+------------+--------+--------------+
+3 rows in set (0.03 sec)
+
+mysql> select department, sum(Salary) group by department order by asc;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'group by department order by asc' at line 1
+mysql> select department, sum(Salary) group by department order by sum(salary) asc;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'group by department order by sum(salary) asc' at line 1
+mysql> select department, sum(Salary) from employee group by department order by sum(salary) asc;
++------------+-------------+
+| department | sum(Salary) |
++------------+-------------+
+| Sales      |       10000 |
+| IT         |       50000 |
+| Atomation  |      120000 |
++------------+-------------+
+3 rows in set (0.08 sec)
+
+mysql> select department, sum(Salary) from employee group by department order by salary asc;
++------------+-------------+
+| department | sum(Salary) |
++------------+-------------+
+| Sales      |       10000 |
+| IT         |       50000 |
+| Atomation  |      120000 |
++------------+-------------+
+3 rows in set (0.00 sec)
+
+mysql> select department, avg(Salary) from employee group by department order by salary asc;
++------------+-------------+
+| department | avg(Salary) |
++------------+-------------+
+| Sales      |  10000.0000 |
+| IT         |  50000.0000 |
+| Atomation  |  60000.0000 |
++------------+-------------+
+3 rows in set (0.00 sec)
+
+mysql> select department, max(Salary) from employee group by department order by salary asc;
++------------+-------------+
+| department | max(Salary) |
++------------+-------------+
+| Sales      |       10000 |
+| IT         |       50000 |
+| Atomation  |      100000 |
++------------+-------------+
+3 rows in set (0.00 sec)
+
+mysql> select department, min(Salary) from employee group by department order by salary asc;
++------------+-------------+
+| department | min(Salary) |
++------------+-------------+
+| Sales      |       10000 |
+| IT         |       50000 |
+| Atomation  |       20000 |
++------------+-------------+
+3 rows in set (0.00 sec)
+
+mysql> select department, sum(Salary) from employee where sum(salary)>80000 group by department order by salary desc;
+ERROR 1111 (HY000): Invalid use of group function
+mysql> select department, sum(Salary) from employee group by department having sum(salary)>80000 order by salary desc;
++------------+-------------+
+| department | sum(Salary) |
++------------+-------------+
+| Atomation  |      120000 |
++------------+-------------+
+1 row in set (0.07 sec)
+
+mysql> select department, sum(Salary) from employee group by department having sum(salary)<80000 order by salary desc;
++------------+-------------+
+| department | sum(Salary) |
++------------+-------------+
+| IT         |       50000 |
+| Sales      |       10000 |
++------------+-------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from incentive;
+Empty set (0.14 sec)
+
+mysql> desc incentive;
++------------------+-------------+------+-----+---------+-------+
+| Field            | Type        | Null | Key | Default | Extra |
++------------------+-------------+------+-----+---------+-------+
+| Employee_Ref_id  | varchar(20) | YES  |     | NULL    |       |
+| incentive_date   | varchar(20) | YES  |     | NULL    |       |
+| incentive_Amount | int(11)     | YES  |     | NULL    |       |
++------------------+-------------+------+-----+---------+-------+
+3 rows in set (0.29 sec)
+
+mysql> alter incentive drop incentive_date;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'incentive drop incentive_date' at line 1
+mysql> alter table incentive drop column incentive_date;
+Query OK, 0 rows affected (0.48 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table incentive add column incentive_date date;
+Query OK, 0 rows affected (0.37 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> update incentive set incentive_date='2011-5-12' where employee_Ref_id=1;
+Query OK, 0 rows affected (0.00 sec)
+Rows matched: 0  Changed: 0  Warnings: 0
+
+mysql> update incentive set incentive_date='2013-6-1' where employee_Ref_id=2;
+Query OK, 0 rows affected (0.00 sec)
+Rows matched: 0  Changed: 0  Warnings: 0
+
+mysql> update incentive set incentive_date='2015-6-2' where employee_Ref_id=3;
+Query OK, 0 rows affected (0.00 sec)
+Rows matched: 0  Changed: 0  Warnings: 0
+
+mysql> update incentive set incentive_date='2017-5-31' where employee_Ref_id=4;
+Query OK, 0 rows affected (0.00 sec)
+Rows matched: 0  Changed: 0  Warnings: 0
+
+mysql> select * from incentive ;
+Empty set (0.00 sec)
+
+mysql> desc incentive;
++------------------+-------------+------+-----+---------+-------+
+| Field            | Type        | Null | Key | Default | Extra |
++------------------+-------------+------+-----+---------+-------+
+| Employee_Ref_id  | varchar(20) | YES  |     | NULL    |       |
+| incentive_Amount | int(11)     | YES  |     | NULL    |       |
+| incentive_date   | date        | YES  |     | NULL    |       |
++------------------+-------------+------+-----+---------+-------+
+3 rows in set (0.28 sec)
+
+mysql> insert into incentive value(1, 800000,2011-5-12);
+ERROR 1292 (22007): Incorrect date value: '1994' for column 'incentive_date' at row 1
+mysql> insert into incentive value(1, 800000,'');
+ERROR 1292 (22007): Incorrect date value: '' for column 'incentive_date' at row 1
+mysql> alter table incentive drop column incentive_date;
+Query OK, 0 rows affected (0.33 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc incentive;
++------------------+-------------+------+-----+---------+-------+
+| Field            | Type        | Null | Key | Default | Extra |
++------------------+-------------+------+-----+---------+-------+
+| Employee_Ref_id  | varchar(20) | YES  |     | NULL    |       |
+| incentive_Amount | int(11)     | YES  |     | NULL    |       |
++------------------+-------------+------+-----+---------+-------+
+2 rows in set (0.13 sec)
+
+mysql> alter table incentive add column incentive_date date;
+Query OK, 0 rows affected (0.28 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> insert into incentive value(1, 800000,2011-5-12);
+ERROR 1292 (22007): Incorrect date value: '1994' for column 'incentive_date' at row 1
+mysql> desc incentive;
++------------------+-------------+------+-----+---------+-------+
+| Field            | Type        | Null | Key | Default | Extra |
++------------------+-------------+------+-----+---------+-------+
+| Employee_Ref_id  | varchar(20) | YES  |     | NULL    |       |
+| incentive_Amount | int(11)     | YES  |     | NULL    |       |
+| incentive_date   | date        | YES  |     | NULL    |       |
++------------------+-------------+------+-----+---------+-------+
+3 rows in set (0.02 sec)
+
+mysql> insert into incentive value(1, 800000,'2011-5-12');
+Query OK, 1 row affected (0.04 sec)
+
+mysql> insert into incentive value(2, 100000,'2013-6-1');
+Query OK, 1 row affected (0.12 sec)
+
+mysql> insert into incentive value(3, 700000,'2014-5-12');
+Query OK, 1 row affected (0.04 sec)
+
+mysql> insert into incentive value(4, 50000,'2014-11-1');
+Query OK, 1 row affected (0.13 sec)
+
+mysql> select * from incentive;
++-----------------+------------------+----------------+
+| Employee_Ref_id | incentive_Amount | incentive_date |
++-----------------+------------------+----------------+
+| 1               |           800000 | 2011-05-12     |
+| 2               |           100000 | 2013-06-01     |
+| 3               |           700000 | 2014-05-12     |
+| 4               |            50000 | 2014-11-01     |
++-----------------+------------------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> select e.first_name, I.incentive_amount from employee e join incentive I on e.emp_id=I.employee_ref_id;
++------------+------------------+
+| first_name | incentive_amount |
++------------+------------------+
+| Sushma     |           800000 |
+| Sujay      |           100000 |
+| Rahul      |           700000 |
+| Jisha      |            50000 |
++------------+------------------+
+4 rows in set (0.02 sec)
+
+mysql> select e.first_name, I.incentive_amount from employee e join incentive I on e.emp_id=I.employee_ref_id and incentive_amount>800000;
+Empty set (0.00 sec)
+
+mysql> select e.first_name, I.incentive_amount from employee e join incentive I on e.emp_id=I.employee_ref_id and incentive_amount>80000;
++------------+------------------+
+| first_name | incentive_amount |
++------------+------------------+
+| Sushma     |           800000 |
+| Sujay      |           100000 |
+| Rahul      |           700000 |
++------------+------------------+
+3 rows in set (0.00 sec)
+
+mysql> insert into employee value('Anaika','Deshpande','IT',900000,'2017-12-6');
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into employee value('Anaika','Deshpande','IT','2017-12-6',100000);
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into employee value('Anaika','Deshpande','IT',100000,'2017-06-12');
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> select * from employee;
++--------+------------+-----------+------------+--------+--------------+
+| emp_id | First_name | Last_name | Department | Salary | joining_date |
++--------+------------+-----------+------------+--------+--------------+
+| 1      | Sushma     | Singh     | IT         |  50000 | 2011-12-01   |
+| 2      | Sujay      | Dangrikar | Sales      |  10000 | 2018-11-03   |
+| 3      | Rahul      | Kolarkar  | Atomation  | 100000 | NULL         |
+| 4      | Jisha      | Thomas    | Atomation  |  20000 | 2017-10-04   |
++--------+------------+-----------+------------+--------+--------------+
+4 rows in set (0.00 sec)
+
+mysql> insert into employee value('5','Anaika','Deshpande','IT',100000,'2017-06-12');
+Query OK, 1 row affected (0.05 sec)
+
+mysql> select e.first_name, I.incentive_amount from employee e join incentive I on e.emp_id=I.employee_ref_id and incentive_amount>80000;
++------------+------------------+
+| first_name | incentive_amount |
++------------+------------------+
+| Sushma     |           800000 |
+| Sujay      |           100000 |
+| Rahul      |           700000 |
++------------+------------------+
+3 rows in set (0.00 sec)
+
+mysql> select e.first_name, I.incentive_amount from employee e ljoin incentive I on e.emp_id=I.employee_ref_id;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ljoin incentive I on e.emp_id=I.employee_ref_id' at line 1
+mysql> select e.first_name, I.incentive_amount from employee e left join incentive I on e.emp_id=I.employee_ref_id;
++------------+------------------+
+| first_name | incentive_amount |
++------------+------------------+
+| Sushma     |           800000 |
+| Sujay      |           100000 |
+| Rahul      |           700000 |
+| Jisha      |            50000 |
+| Anaika     |             NULL |
++------------+------------------+
+5 rows in set (0.00 sec)
+
+mysql> select e.first_name, coalesce(I.incentive_amount) from employee e ljoin incentive I on e.emp_id=I.employee_ref_id;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ljoin incentive I on e.emp_id=I.employee_ref_id' at line 1
+mysql> select e.first_name, coalesce(I.incentive_amount,0) from employee e ljoin incentive I on e.emp_id=I.employee_ref_id;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ljoin incentive I on e.emp_id=I.employee_ref_id' at line 1
+mysql> select e.first_name, ifnull(I.incentive_amount,0) from employee e ljoin incentive I on e.emp_id=I.employee_ref_id;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ljoin incentive I on e.emp_id=I.employee_ref_id' at line 1
+mysql> select e.first_name, ifnull(I.incentive_amount,0) from employee e left join incentive I on e.emp_id=I.employee_ref_id;
++------------+------------------------------+
+| first_name | ifnull(I.incentive_amount,0) |
++------------+------------------------------+
+| Sushma     |                       800000 |
+| Sujay      |                       100000 |
+| Rahul      |                       700000 |
+| Jisha      |                        50000 |
+| Anaika     |                            0 |
++------------+------------------------------+
+5 rows in set (0.00 sec)
+
+mysql> select e.first_name, coalesce(I.incentive_amount) from employee e ljoin incentive I on e.emp_id=I.employee_ref_id and I.incentive_amount<>null;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ljoin incentive I on e.emp_id=I.employee_ref_id and I.incentive_amount<>null' at line 1
+mysql> select e.first_name, coalesce(I.incentive_amount) from employee e ljoin incentive I on e.emp_id=I.employee_ref_id and I.incentive_amount!=0;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ljoin incentive I on e.emp_id=I.employee_ref_id and I.incentive_amount!=0' at line 1
+mysql> select e.first_name, coalesce(I.incentive_amount) from employee e ljoin incentive I on e.emp_id=I.employee_ref_id and I.incentive_amount is null;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ljoin incentive I on e.emp_id=I.employee_ref_id and I.incentive_amount is null' at line 1
+mysql> select e.first_name, coalesce(I.incentive_amount) from employee e left join incentive I on e.emp_id=I.employee_ref_id and I.incentive_amount is null;
++------------+------------------------------+
+| first_name | coalesce(I.incentive_amount) |
++------------+------------------------------+
+| Sushma     |                         NULL |
+| Sujay      |                         NULL |
+| Rahul      |                         NULL |
+| Jisha      |                         NULL |
+| Anaika     |                         NULL |
++------------+------------------------------+
+5 rows in set (0.01 sec)
+
+mysql> select e.first_name, ifnull(I.incentive_amount,0) from employee e left join incentive I on e.emp_id=I.employee_ref_id;
++------------+------------------------------+
+| first_name | ifnull(I.incentive_amount,0) |
++------------+------------------------------+
+| Sushma     |                       800000 |
+| Sujay      |                       100000 |
+| Rahul      |                       700000 |
+| Jisha      |                        50000 |
+| Anaika     |                            0 |
++------------+------------------------------+
+5 rows in set (0.00 sec)
+
+mysql> select tables;
+ERROR 1054 (42S22): Unknown column 'tables' in 'field list'
+mysql> show tables;
++------------------+
+| Tables_in_niit   |
++------------------+
+| batchdetails     |
+| emp              |
+| employee         |
+| fac_deatils      |
+| faculty_details  |
+| faculty_feedback |
+| facultydetails   |
+| incentive        |
+| login_details    |
+| moduledetails    |
+| questions        |
+| student_feedback |
+| studentdetails   |
++------------------+
+13 rows in set (0.40 sec)
+
+mysql> desc fac_details;
+ERROR 1146 (42S02): Table 'niit.fac_details' doesn't exist
+mysql> desc fac_deatils;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| Name  | varchar(20) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+1 row in set (0.13 sec)
+
+mysql> select * from fac_deatils;
++----------------------+
+| Name                 |
++----------------------+
+| PANKAJ GHOSH         |
+| SANJAY RADHAKRISHNAN |
+| NANDINI NAIR         |
+| ANITHA PAREKH        |
+| MEENA KULKARNI       |
++----------------------+
+5 rows in set (0.04 sec)
+
+mysql> rename fac_deatils to fac_details;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'fac_deatils to fac_details' at line 1
+mysql> rename table fac_deatils to fac_details;
+Query OK, 0 rows affected (0.35 sec)
+
+mysql> create table Student_status (student_id varchar(20),Module_id varchar(20),Start_date date, end_date date, AfeedbackGiven varchar(20), TfeedbackGiven varchar(20));
+Query OK, 0 rows affected (0.46 sec)
+
+mysql> alter student_status add foreign key (student_id) references Moduledetails(Module_id);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'student_status add foreign key (student_id) references Moduledetails(Module_id)' at line 1
+mysql> alter table student_status add foreign key (student_id) references Moduledetails(Module_id);
+Query OK, 0 rows affected (0.46 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> drop table student_status;
+Query OK, 0 rows affected (0.18 sec)
+
+mysql> create table Student_status (student_id varchar(20),Module_id varchar(20),Start_date date, end_date date, AfeedbackGiven varchar(20), TfeedbackGiven varchar(20));
+Query OK, 0 rows affected (0.13 sec)
+
+mysql> alter student_status add foreign key (student_id) references studentdetails(Student_id));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'student_status add foreign key (student_id) references studentdetails(Student_id' at line 1
+mysql> alter table student_status add foreign key (student_id) references studentdetails(Student_id));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1
+mysql> alter table student_status add foreign key (student_id) references studentdetails(Student_id));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1
+mysql> desc studentdetails;
++-----------------------+--------------+------+-----+---------+-------+
+| Field                 | Type         | Null | Key | Default | Extra |
++-----------------------+--------------+------+-----+---------+-------+
+| Student_id            | varchar(20)  | NO   | PRI |         |       |
+| Title                 | varchar(7)   | YES  |     | NULL    |       |
+| Student_Name          | varchar(30)  | YES  |     | NULL    |       |
+| Student_Location      | varchar(30)  | YES  |     | NULL    |       |
+| Student_Track         | varchar(15)  | YES  |     | NULL    |       |
+| Student_Qualification | varchar(100) | YES  |     | NULL    |       |
+| Student__Experience   | int(11)      | YES  |     | NULL    |       |
+| Student_Email         | varchar(100) | YES  |     | NULL    |       |
+| Student_password      | varchar(20)  | YES  |     | NULL    |       |
++-----------------------+--------------+------+-----+---------+-------+
+9 rows in set (0.06 sec)
+
+mysql> alter table student_status add foreign key (student_id) references studentdetails(Student_id));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1
+mysql> alter student_status add foreign key (student_id) references studentdetails(Student_id));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'student_status add foreign key (student_id) references studentdetails(Student_id' at line 1
+mysql> alter table student_status add foreign key (module_id) references moduledetails(Module_id));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1
+mysql> alter table student_status add foreign key ('module_id') references moduledetails('Module_id'));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''module_id') references moduledetails('Module_id'))' at line 1
+mysql> desc student_status;
++----------------+-------------+------+-----+---------+-------+
+| Field          | Type        | Null | Key | Default | Extra |
++----------------+-------------+------+-----+---------+-------+
+| student_id     | varchar(20) | YES  |     | NULL    |       |
+| Module_id      | varchar(20) | YES  |     | NULL    |       |
+| Start_date     | date        | YES  |     | NULL    |       |
+| end_date       | date        | YES  |     | NULL    |       |
+| AfeedbackGiven | varchar(20) | YES  |     | NULL    |       |
+| TfeedbackGiven | varchar(20) | YES  |     | NULL    |       |
++----------------+-------------+------+-----+---------+-------+
+6 rows in set (0.10 sec)
+
+mysql> alter table student_status add foreign key (student_id) references studentdetails(student_id);
+Query OK, 0 rows affected (0.35 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table student_status add foreign key (module_id) references moduledetails(module_id);
+Query OK, 0 rows affected (0.36 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student_status;
++----------------+-------------+------+-----+---------+-------+
+| Field          | Type        | Null | Key | Default | Extra |
++----------------+-------------+------+-----+---------+-------+
+| student_id     | varchar(20) | YES  | MUL | NULL    |       |
+| Module_id      | varchar(20) | YES  | MUL | NULL    |       |
+| Start_date     | date        | YES  |     | NULL    |       |
+| end_date       | date        | YES  |     | NULL    |       |
+| AfeedbackGiven | varchar(20) | YES  |     | NULL    |       |
+| TfeedbackGiven | varchar(20) | YES  |     | NULL    |       |
++----------------+-------------+------+-----+---------+-------+
+6 rows in set (0.03 sec)
+
+mysql> insert into student_status value('A001','O10SQL','B001','F001','2000-12-15','2000-12-25');
+ERROR 1292 (22007): Incorrect date value: 'B001' for column 'Start_date' at row 1
+mysql> insert into student_status values('A001','O10SQL','B001','F001','2000-12-15','2000-12-25');
+ERROR 1292 (22007): Incorrect date value: 'B001' for column 'Start_date' at row 1
+mysql> select * from moduledetails;
++-----------+----------------------+-----------------+
+| Module_id | Module_Name          | Module_Duration |
++-----------+----------------------+-----------------+
+| 10SQL     | Oracle 10g SQL       |              16 |
+| J2EE      | Advanced Java EE 1.6 |              80 |
+| J2SE      | Core Java SE 1.6     |             288 |
+| O10PLSQL  | Oracle 10g PL/ SQL   |              16 |
++-----------+----------------------+-----------------+
+4 rows in set (0.02 sec)
+
+mysql> insert into student_status values('A001','O10SQL','2000-12-15','2000-12-25','B001','F001');
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`niit`.`student_status`, CONSTRAINT `student_status_ibfk_2` FOREIGN KEY (`Module_id`) REFERENCES `moduledetails` (`Module_id`))
+mysql> insert into student_status value('A001','O10SQL','2000-12-15','2000-12-25','B001','F001');
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`niit`.`student_status`, CONSTRAINT `student_status_ibfk_2` FOREIGN KEY (`Module_id`) REFERENCES `moduledetails` (`Module_id`))
+mysql> insert into student_status value('A001','O10SQL','2000-12-15','2000-12-1','B001','F001');
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`niit`.`student_status`, CONSTRAINT `student_status_ibfk_2` FOREIGN KEY (`Module_id`) REFERENCES `moduledetails` (`Module_id`))
+mysql>
+mysql>
+mysql> alter student_status drop column student_id ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'student_status drop column student_id' at line 1
+mysql> alter table student_status drop column student_id ;
+ERROR 1025 (HY000): Error on rename of '.\niit\#sql-15a0_15' to '.\niit\student_status' (errno: 150)
+mysql> show student_status;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'student_status' at line 1
+mysql> desc student_status;
++----------------+-------------+------+-----+---------+-------+
+| Field          | Type        | Null | Key | Default | Extra |
++----------------+-------------+------+-----+---------+-------+
+| student_id     | varchar(20) | YES  | MUL | NULL    |       |
+| Module_id      | varchar(20) | YES  | MUL | NULL    |       |
+| Start_date     | date        | YES  |     | NULL    |       |
+| end_date       | date        | YES  |     | NULL    |       |
+| AfeedbackGiven | varchar(20) | YES  |     | NULL    |       |
+| TfeedbackGiven | varchar(20) | YES  |     | NULL    |       |
++----------------+-------------+------+-----+---------+-------+
+6 rows in set (0.16 sec)
+
+mysql> alter table student_status delete column student_id;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'delete column student_id' at line 1
+mysql> alter table student_status drop column student_id;
+ERROR 1025 (HY000): Error on rename of '.\niit\#sql-15a0_15' to '.\niit\student_status' (errno: 150)
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| niit               |
+| performance_schema |
+| sakila             |
+| test               |
+| world              |
++--------------------+
+7 rows in set (0.14 sec)
+
+mysql> use niit
+Database changed
+mysql> show tables;
++------------------+
+| Tables_in_niit   |
++------------------+
+| batchdetails     |
+| emp              |
+| employee         |
+| fac_details      |
+| faculty_details  |
+| faculty_feedback |
+| facultydetails   |
+| incentive        |
+| login_details    |
+| moduledetails    |
+| questions        |
+| student_feedback |
+| student_status   |
+| studentdetails   |
++------------------+
+14 rows in set (0.00 sec)
+
+mysql> alter table student_status drop column student_id;
+ERROR 1025 (HY000): Error on rename of '.\niit\#sql-15a0_15' to '.\niit\student_status' (errno: 150)
+mysql> drop table student_status;
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> create table Student_status (student_id varchar(20),Module_id varchar(20),Start_date date, end_date date, AfeedbackGiven varchar(20), TfeedbackGiven varchar(20);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> create table Student_status (student_id varchar(20),Module_id varchar(20),Start_date date, end_date date, AfeedbackGiven varchar(20), TfeedbackGiven varchar(20));
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> insert into student_status values('A001','O10SQL','2000-12-15','2000-12-25','B001','F001');
+Query OK, 1 row affected (0.12 sec)
+
+mysql> insert into student_status values('A002','10SQL','2000-12-15','2000-12-25','B001','F001');
+Query OK, 1 row affected (0.07 sec)
+
+mysql> insert into student_status values('A003','O10SQL','2000-12-15','2000-12-25','B001','F001');
+Query OK, 1 row affected (0.04 sec)
+
+mysql> Select * from student_status;
++------------+-----------+------------+------------+----------------+----------------+
+| student_id | Module_id | Start_date | end_date   | AfeedbackGiven | TfeedbackGiven |
++------------+-----------+------------+------------+----------------+----------------+
+| A001       | O10SQL    | 2000-12-15 | 2000-12-25 | B001           | F001           |
+| A002       | 10SQL     | 2000-12-15 | 2000-12-25 | B001           | F001           |
+| A003       | O10SQL    | 2000-12-15 | 2000-12-25 | B001           | F001           |
++------------+-----------+------------+------------+----------------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> alter table student_status add foreign key (student_id) references studentdetails(student_id);
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`niit`.`#sql-15a0_15`, CONSTRAINT `#sql-15a0_15_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `studentdetails` (`Student_id`))
+mysql> select * from studentdetails;
++------------+-------+--------------------+------------------+---------------+---------------------------------------------------+---------------------+-----------------------------+------------------+
+| Student_id | Title | Student_Name       | Student_Location | Student_Track | Student_Qualification                             | Student__Experience | Student_Email               | Student_password |
++------------+-------+--------------------+------------------+---------------+---------------------------------------------------+---------------------+-----------------------------+------------------+
+|            | NULL  | NULL               | NULL             | NULL          | NULL                                              |                NULL | NULL                        | NULL             |
+| A001       | Miss. | GAYATHRI NARAYANAN | Gurgaon          | Java          | Bachelorof Technology                             |                   2 | Gayathri.Narayanan@hp.com   | tne1@123         |
+| A002       | Mrs.  | RADHIKA MOHAN      | Kerala           | Java          | Bachelor of Engineering In Information Technology |                   5 | Radhika.Mohan@cognizant.com | tne2@123         |
++------------+-------+--------------------+------------------+---------------+---------------------------------------------------+---------------------+-----------------------------+------------------+
+3 rows in set (0.20 sec)
+
+mysql> select * from module details;
+ERROR 1146 (42S02): Table 'niit.module' doesn't exist
+mysql> select * from moduledetails;
++-----------+----------------------+-----------------+
+| Module_id | Module_Name          | Module_Duration |
++-----------+----------------------+-----------------+
+| 10SQL     | Oracle 10g SQL       |              16 |
+| J2EE      | Advanced Java EE 1.6 |              80 |
+| J2SE      | Core Java SE 1.6     |             288 |
+| O10PLSQL  | Oracle 10g PL/ SQL   |              16 |
++-----------+----------------------+-----------------+
+4 rows in set (0.00 sec)
+
+mysql> select * from student_status;
++------------+-----------+------------+------------+----------------+----------------+
+| student_id | Module_id | Start_date | end_date   | AfeedbackGiven | TfeedbackGiven |
++------------+-----------+------------+------------+----------------+----------------+
+| A001       | O10SQL    | 2000-12-15 | 2000-12-25 | B001           | F001           |
+| A002       | 10SQL     | 2000-12-15 | 2000-12-25 | B001           | F001           |
+| A003       | O10SQL    | 2000-12-15 | 2000-12-25 | B001           | F001           |
++------------+-----------+------------+------------+----------------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> show tables;
++------------------+
+| Tables_in_niit   |
++------------------+
+| batchdetails     |
+| emp              |
+| employee         |
+| fac_details      |
+| faculty_details  |
+| faculty_feedback |
+| facultydetails   |
+| incentive        |
+| login_details    |
+| moduledetails    |
+| questions        |
+| student_feedback |
+| student_status   |
+| studentdetails   |
++------------------+
+14 rows in set (0.92 sec)
+
+mysql> select * from student_status;
++------------+-----------+------------+------------+----------------+----------------+
+| student_id | Module_id | Start_date | end_date   | AfeedbackGiven | TfeedbackGiven |
++------------+-----------+------------+------------+----------------+----------------+
+| A001       | O10SQL    | 2000-12-15 | 2000-12-25 | B001           | F001           |
+| A002       | 10SQL     | 2000-12-15 | 2000-12-25 | B001           | F001           |
+| A003       | O10SQL    | 2000-12-15 | 2000-12-25 | B001           | F001           |
++------------+-----------+------------+------------+----------------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> insert into student_status values('A001','O10PLSQL','2001-2-1','2001-2-12','B002','F002');
+Query OK, 1 row affected (1.04 sec)
+
+mysql> insert into student_status values('A002','O10PLSQL','2001-2-1','2001-2-12','B002','F002');
+Query OK, 1 row affected (0.07 sec)
+
+mysql> insert into student_status values('A003','O10PLSQL','2001-2-1','2001-2-12','B002','F002');
+Query OK, 1 row affected (0.10 sec)
+
+mysql> insert into student_status values('A001','J2SE','2002-8-20','2002-10-25','B003','F003');
+Query OK, 1 row affected (0.04 sec)
+
+mysql> insert into student_status values('A002','J2SE','2002-8-20','2002-10-25','B003','F003');
+Query OK, 1 row affected (0.12 sec)
+
+mysql>
+mysql> select * from studentdetails;
++------------+-------+--------------------+------------------+---------------+---------------------------------------------------+---------------------+-----------------------------+------------------+
+| Student_id | Title | Student_Name       | Student_Location | Student_Track | Student_Qualification                             | Student__Experience | Student_Email               | Student_password |
++------------+-------+--------------------+------------------+---------------+---------------------------------------------------+---------------------+-----------------------------+------------------+
+|            | NULL  | NULL               | NULL             | NULL          | NULL                                              |                NULL | NULL                        | NULL             |
+| A001       | Miss. | GAYATHRI NARAYANAN | Gurgaon          | Java          | Bachelorof Technology                             |                   2 | Gayathri.Narayanan@hp.com   | tne1@123         |
+| A002       | Mrs.  | RADHIKA MOHAN      | Kerala           | Java          | Bachelor of Engineering In Information Technology |                   5 | Radhika.Mohan@cognizant.com | tne2@123         |
++------------+-------+--------------------+------------------+---------------+---------------------------------------------------+---------------------+-----------------------------+------------------+
+3 rows in set (0.01 sec)
+
+mysql> update table studentdetails set student_id= 'A003' where student_id ='A003';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'table studentdetails set student_id= 'A003' where student_id ='A003'' at line 1
+mysql> update studentdetails set student_id= 'A003' where student_id ='A003';
+Query OK, 0 rows affected (0.67 sec)
+Rows matched: 0  Changed: 0  Warnings: 0
+
+mysql> update studentdetails set Title= 'Mr',Student_Name='KISHORE SRINIVAS',Student_Location='Chennai' where student_id ='A003';
+Query OK, 0 rows affected (0.00 sec)
+Rows matched: 0  Changed: 0  Warnings: 0
+
+mysql> select *from studentdetails;
++------------+-------+--------------------+------------------+---------------+---------------------------------------------------+---------------------+-----------------------------+------------------+
+| Student_id | Title | Student_Name       | Student_Location | Student_Track | Student_Qualification                             | Student__Experience | Student_Email               | Student_password |
++------------+-------+--------------------+------------------+---------------+---------------------------------------------------+---------------------+-----------------------------+------------------+
+|            | NULL  | NULL               | NULL             | NULL          | NULL                                              |                NULL | NULL                        | NULL             |
+| A001       | Miss. | GAYATHRI NARAYANAN | Gurgaon          | Java          | Bachelorof Technology                             |                   2 | Gayathri.Narayanan@hp.com   | tne1@123         |
+| A002       | Mrs.  | RADHIKA MOHAN      | Kerala           | Java          | Bachelor of Engineering In Information Technology |                   5 | Radhika.Mohan@cognizant.com | tne2@123         |
++------------+-------+--------------------+------------------+---------------+---------------------------------------------------+---------------------+-----------------------------+------------------+
+3 rows in set (0.02 sec)
+
+mysql> update studentdetails set student_id= 'A003' where student_id ='Null';
+Query OK, 0 rows affected (0.00 sec)
+Rows matched: 0  Changed: 0  Warnings: 0
+
+mysql> update studentdetails set Title= 'Mr',Student_Name='KISHORE SRINIVAS',Student_Location='Chennai' where student_id ='A003';
+Query OK, 0 rows affected (0.00 sec)
+Rows matched: 0  Changed: 0  Warnings: 0
+
+mysql> alter studentdetails drop column Student_experience;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'studentdetails drop column Student_experience' at line 1
+mysql> alter table studentdetails drop column Student_experience;
+ERROR 1091 (42000): Can't DROP 'Student_experience'; check that column/key exists
+mysql> Select * from studentdetails;
++------------+-------+--------------------+------------------+---------------+---------------------------------------------------+---------------------+-----------------------------+------------------+
+| Student_id | Title | Student_Name       | Student_Location | Student_Track | Student_Qualification                             | Student__Experience | Student_Email               | Student_password |
++------------+-------+--------------------+------------------+---------------+---------------------------------------------------+---------------------+-----------------------------+------------------+
+|            | NULL  | NULL               | NULL             | NULL          | NULL                                              |                NULL | NULL                        | NULL             |
+| A001       | Miss. | GAYATHRI NARAYANAN | Gurgaon          | Java          | Bachelorof Technology                             |                   2 | Gayathri.Narayanan@hp.com   | tne1@123         |
+| A002       | Mrs.  | RADHIKA MOHAN      | Kerala           | Java          | Bachelor of Engineering In Information Technology |                   5 | Radhika.Mohan@cognizant.com | tne2@123         |
++------------+-------+--------------------+------------------+---------------+---------------------------------------------------+---------------------+-----------------------------+------------------+
+3 rows in set (0.05 sec)
+
+mysql> alter table studentdetails drop column student_experience;
+ERROR 1091 (42000): Can't DROP 'student_experience'; check that column/key exists
+mysql> drop studentdetails;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'studentdetails' at line 1
+mysql> drop table studentdetails;
+Query OK, 0 rows affected (1.64 sec)
+
+mysql> create table StudentDetails (Student_id varchar(20), Title Varchar(7),Student_Name varchar(30),Student_Location varchar(30),Student_Track varchar(15),Student_Qualification varchar(100), Student_Email varchar(100),Student_password varchar(20));
+Query OK, 0 rows affected (0.31 sec)
+
+mysql> insert into studentdetails value('A001','Miss.','GAYATHRI NARAYANAN','Gurgaon','Java','Bachelorof Technology','Gayathri.Narayanan@hp.com','tne1@123');
+Query OK, 1 row affected (0.24 sec)
+
+mysql> insert into studentdetails value('A002','Mrs.','RADHIKA MOHAN','Kerala','Java','Bachelor of Engineering In Information Technology','Radhika.Mohan@cognizant.com','tne2@123');
+Query OK, 1 row affected (0.07 sec)
+
+mysql> insert into studentdetails value('A003','Mr.','KISHORE SRINIVAS','Chennai','Java','Bachelor of Engineering In Computers','Kishore.Srinivas@ibm.com','tne3@123');
+Query OK, 1 row affected (0.35 sec)
+
+mysql> select * from studentdetails;
++------------+-------+--------------------+------------------+---------------+---------------------------------------------------+-----------------------------+------------------+
+| Student_id | Title | Student_Name       | Student_Location | Student_Track | Student_Qualification                             | Student_Email               | Student_password |
++------------+-------+--------------------+------------------+---------------+---------------------------------------------------+-----------------------------+------------------+
+| A001       | Miss. | GAYATHRI NARAYANAN | Gurgaon          | Java          | Bachelorof Technology                             | Gayathri.Narayanan@hp.com   | tne1@123         |
+| A002       | Mrs.  | RADHIKA MOHAN      | Kerala           | Java          | Bachelor of Engineering In Information Technology | Radhika.Mohan@cognizant.com | tne2@123         |
+| A003       | Mr.   | KISHORE SRINIVAS   | Chennai          | Java          | Bachelor of Engineering In Computers              | Kishore.Srinivas@ibm.com    | tne3@123         |
++------------+-------+--------------------+------------------+---------------+---------------------------------------------------+-----------------------------+------------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from moduledetails;
++-----------+----------------------+-----------------+
+| Module_id | Module_Name          | Module_Duration |
++-----------+----------------------+-----------------+
+| 10SQL     | Oracle 10g SQL       |              16 |
+| J2EE      | Advanced Java EE 1.6 |              80 |
+| J2SE      | Core Java SE 1.6     |             288 |
+| O10PLSQL  | Oracle 10g PL/ SQL   |              16 |
++-----------+----------------------+-----------------+
+4 rows in set (0.07 sec)
+
+mysql> select * from student_status;
++------------+-----------+------------+------------+----------------+----------------+
+| student_id | Module_id | Start_date | end_date   | AfeedbackGiven | TfeedbackGiven |
++------------+-----------+------------+------------+----------------+----------------+
+| A001       | O10SQL    | 2000-12-15 | 2000-12-25 | B001           | F001           |
+| A002       | 10SQL     | 2000-12-15 | 2000-12-25 | B001           | F001           |
+| A003       | O10SQL    | 2000-12-15 | 2000-12-25 | B001           | F001           |
+| A001       | O10PLSQL  | 2001-02-01 | 2001-02-12 | B002           | F002           |
+| A002       | O10PLSQL  | 2001-02-01 | 2001-02-12 | B002           | F002           |
+| A003       | O10PLSQL  | 2001-02-01 | 2001-02-12 | B002           | F002           |
+| A001       | J2SE      | 2002-08-20 | 2002-10-25 | B003           | F003           |
+| A002       | J2SE      | 2002-08-20 | 2002-10-25 | B003           | F003           |
++------------+-----------+------------+------------+----------------+----------------+
+8 rows in set (0.00 sec)
+
+mysql> select count(Student_id) from student_status group by module_id;
++-------------------+
+| count(Student_id) |
++-------------------+
+|                 1 |
+|                 2 |
+|                 3 |
+|                 2 |
++-------------------+
+4 rows in set (0.16 sec)
+
+mysql> select count(Student_id),module_id from student_status group by module_id;
++-------------------+-----------+
+| count(Student_id) | module_id |
++-------------------+-----------+
+|                 1 | 10SQL     |
+|                 2 | J2SE      |
+|                 3 | O10PLSQL  |
+|                 2 | O10SQL    |
++-------------------+-----------+
+4 rows in set (0.01 sec)
+
+mysql> select count(Student_id),module_id from student_status group by start_date;
++-------------------+-----------+
+| count(Student_id) | module_id |
++-------------------+-----------+
+|                 3 | O10SQL    |
+|                 3 | O10PLSQL  |
+|                 2 | J2SE      |
++-------------------+-----------+
+3 rows in set (0.10 sec)
+
+mysql> select count(Student_id),module_id,start_date from student_status group by start_date;
++-------------------+-----------+------------+
+| count(Student_id) | module_id | start_date |
++-------------------+-----------+------------+
+|                 3 | O10SQL    | 2000-12-15 |
+|                 3 | O10PLSQL  | 2001-02-01 |
+|                 2 | J2SE      | 2002-08-20 |
++-------------------+-----------+------------+
+3 rows in set (0.00 sec)
+
+mysql> select count(Student_id),start_date from student_status group by start_date having TFeedbackGiven='F001';
+ERROR 1054 (42S22): Unknown column 'TFeedbackGiven' in 'having clause'
+mysql> select count(Student_id),start_date from student_status group by start_date having TFeedbackGiven='F001';
+ERROR 1054 (42S22): Unknown column 'TFeedbackGiven' in 'having clause'
+mysql> select * from student_status;
++------------+-----------+------------+------------+----------------+----------------+
+| student_id | Module_id | Start_date | end_date   | AfeedbackGiven | TfeedbackGiven |
++------------+-----------+------------+------------+----------------+----------------+
+| A001       | O10SQL    | 2000-12-15 | 2000-12-25 | B001           | F001           |
+| A002       | 10SQL     | 2000-12-15 | 2000-12-25 | B001           | F001           |
+| A003       | O10SQL    | 2000-12-15 | 2000-12-25 | B001           | F001           |
+| A001       | O10PLSQL  | 2001-02-01 | 2001-02-12 | B002           | F002           |
+| A002       | O10PLSQL  | 2001-02-01 | 2001-02-12 | B002           | F002           |
+| A003       | O10PLSQL  | 2001-02-01 | 2001-02-12 | B002           | F002           |
+| A001       | J2SE      | 2002-08-20 | 2002-10-25 | B003           | F003           |
+| A002       | J2SE      | 2002-08-20 | 2002-10-25 | B003           | F003           |
++------------+-----------+------------+------------+----------------+----------------+
+8 rows in set (0.00 sec)
+
+mysql> select count(Student_id),start_date from student_status group by start_date having TfeedbackGiven= 'F001';
+ERROR 1054 (42S22): Unknown column 'TfeedbackGiven' in 'having clause'
+mysql> select count(Student_id),start_date from student_status where TfeedbackGiven='F001' group by start_date ;
++-------------------+------------+
+| count(Student_id) | start_date |
++-------------------+------------+
+|                 3 | 2000-12-15 |
++-------------------+------------+
+1 row in set (0.01 sec)
+
+mysql> select count(Student_id),start_date from student_status where TfeedbackGiven='F001' group by start_date having count(Start_date)>2;
++-------------------+------------+
+| count(Student_id) | start_date |
++-------------------+------------+
+|                 3 | 2000-12-15 |
++-------------------+------------+
+1 row in set (0.00 sec)
+
+mysql> select count(Student_id),start_date from student_status where TfeedbackGiven='F001' group by start_date having count(student_id)>2;
++-------------------+------------+
+| count(Student_id) | start_date |
++-------------------+------------+
+|                 3 | 2000-12-15 |
++-------------------+------------+
+1 row in set (0.00 sec)
+
+mysql> select count(Student_id),start_date from student_status where TfeedbackGiven='F001' group by start_date having count(student_id)>1;
++-------------------+------------+
+| count(Student_id) | start_date |
++-------------------+------------+
+|                 3 | 2000-12-15 |
++-------------------+------------+
+1 row in set (0.00 sec)
+
+mysql> select * from moduledetails order by asc;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'asc' at line 1
+mysql> select * from moduledetails order by module_duration;
++-----------+----------------------+-----------------+
+| Module_id | Module_Name          | Module_Duration |
++-----------+----------------------+-----------------+
+| 10SQL     | Oracle 10g SQL       |              16 |
+| O10PLSQL  | Oracle 10g PL/ SQL   |              16 |
+| J2EE      | Advanced Java EE 1.6 |              80 |
+| J2SE      | Core Java SE 1.6     |             288 |
++-----------+----------------------+-----------------+
+4 rows in set (0.09 sec)
+
+mysql> select * from studentdetails;
++------------+-------+--------------------+------------------+---------------+---------------------------------------------------+-----------------------------+------------------+
+| Student_id | Title | Student_Name       | Student_Location | Student_Track | Student_Qualification                             | Student_Email               | Student_password |
++------------+-------+--------------------+------------------+---------------+---------------------------------------------------+-----------------------------+------------------+
+| A001       | Miss. | GAYATHRI NARAYANAN | Gurgaon          | Java          | Bachelorof Technology                             | Gayathri.Narayanan@hp.com   | tne1@123         |
+| A002       | Mrs.  | RADHIKA MOHAN      | Kerala           | Java          | Bachelor of Engineering In Information Technology | Radhika.Mohan@cognizant.com | tne2@123         |
+| A003       | Mr.   | KISHORE SRINIVAS   | Chennai          | Java          | Bachelor of Engineering In Computers              | Kishore.Srinivas@ibm.com    | tne3@123         |
++------------+-------+--------------------+------------------+---------------+---------------------------------------------------+-----------------------------+------------------+
+3 rows in set (0.00 sec)
+
+mysql> select * student_status;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'student_status' at line 1
+mysql> select * from student_status;
++------------+-----------+------------+------------+----------------+----------------+
+| student_id | Module_id | Start_date | end_date   | AfeedbackGiven | TfeedbackGiven |
++------------+-----------+------------+------------+----------------+----------------+
+| A001       | O10SQL    | 2000-12-15 | 2000-12-25 | B001           | F001           |
+| A002       | 10SQL     | 2000-12-15 | 2000-12-25 | B001           | F001           |
+| A003       | O10SQL    | 2000-12-15 | 2000-12-25 | B001           | F001           |
+| A001       | O10PLSQL  | 2001-02-01 | 2001-02-12 | B002           | F002           |
+| A002       | O10PLSQL  | 2001-02-01 | 2001-02-12 | B002           | F002           |
+| A003       | O10PLSQL  | 2001-02-01 | 2001-02-12 | B002           | F002           |
+| A001       | J2SE      | 2002-08-20 | 2002-10-25 | B003           | F003           |
+| A002       | J2SE      | 2002-08-20 | 2002-10-25 | B003           | F003           |
++------------+-----------+------------+------------+----------------+----------------+
+8 rows in set (0.00 sec)
+
+mysql> Select s.student_name, m.module_name, m.module_id  from studentdetails s join moduledetails;
+ERROR 1054 (42S22): Unknown column 'm.module_name' in 'field list'
+mysql> Select s.student_name, m.module_name, m.module_id  from studentdetails s left join moduledetails;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> Select s.student_name, m.module_name, m.module_id  from studentdetails s join moduledetails m;
++--------------------+----------------------+-----------+
+| student_name       | module_name          | module_id |
++--------------------+----------------------+-----------+
+| GAYATHRI NARAYANAN | Oracle 10g SQL       | 10SQL     |
+| RADHIKA MOHAN      | Oracle 10g SQL       | 10SQL     |
+| KISHORE SRINIVAS   | Oracle 10g SQL       | 10SQL     |
+| GAYATHRI NARAYANAN | Advanced Java EE 1.6 | J2EE      |
+| RADHIKA MOHAN      | Advanced Java EE 1.6 | J2EE      |
+| KISHORE SRINIVAS   | Advanced Java EE 1.6 | J2EE      |
+| GAYATHRI NARAYANAN | Core Java SE 1.6     | J2SE      |
+| RADHIKA MOHAN      | Core Java SE 1.6     | J2SE      |
+| KISHORE SRINIVAS   | Core Java SE 1.6     | J2SE      |
+| GAYATHRI NARAYANAN | Oracle 10g PL/ SQL   | O10PLSQL  |
+| RADHIKA MOHAN      | Oracle 10g PL/ SQL   | O10PLSQL  |
+| KISHORE SRINIVAS   | Oracle 10g PL/ SQL   | O10PLSQL  |
++--------------------+----------------------+-----------+
+12 rows in set (0.00 sec)
+
+mysql> Select s.student_name, m.module_name, m.module_id  from studentdetails s left join moduledetails m;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> Select s.student_name, m.module_name, m.module_id  from studentdetails s rigth join moduledetails m;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rigth join moduledetails m' at line 1
+mysql> Select s.student_name, m.module_name, m.module_id  from studentdetails s join moduledetails m;
++--------------------+----------------------+-----------+
+| student_name       | module_name          | module_id |
++--------------------+----------------------+-----------+
+| GAYATHRI NARAYANAN | Oracle 10g SQL       | 10SQL     |
+| RADHIKA MOHAN      | Oracle 10g SQL       | 10SQL     |
+| KISHORE SRINIVAS   | Oracle 10g SQL       | 10SQL     |
+| GAYATHRI NARAYANAN | Advanced Java EE 1.6 | J2EE      |
+| RADHIKA MOHAN      | Advanced Java EE 1.6 | J2EE      |
+| KISHORE SRINIVAS   | Advanced Java EE 1.6 | J2EE      |
+| GAYATHRI NARAYANAN | Core Java SE 1.6     | J2SE      |
+| RADHIKA MOHAN      | Core Java SE 1.6     | J2SE      |
+| KISHORE SRINIVAS   | Core Java SE 1.6     | J2SE      |
+| GAYATHRI NARAYANAN | Oracle 10g PL/ SQL   | O10PLSQL  |
+| RADHIKA MOHAN      | Oracle 10g PL/ SQL   | O10PLSQL  |
+| KISHORE SRINIVAS   | Oracle 10g PL/ SQL   | O10PLSQL  |
++--------------------+----------------------+-----------+
+12 rows in set (0.00 sec)
+
+mysql> Select distinct(s.student_name), m.module_name, m.module_id  from studentdetails s join moduledetails m;
++--------------------+----------------------+-----------+
+| student_name       | module_name          | module_id |
++--------------------+----------------------+-----------+
+| GAYATHRI NARAYANAN | Oracle 10g SQL       | 10SQL     |
+| RADHIKA MOHAN      | Oracle 10g SQL       | 10SQL     |
+| KISHORE SRINIVAS   | Oracle 10g SQL       | 10SQL     |
+| GAYATHRI NARAYANAN | Advanced Java EE 1.6 | J2EE      |
+| RADHIKA MOHAN      | Advanced Java EE 1.6 | J2EE      |
+| KISHORE SRINIVAS   | Advanced Java EE 1.6 | J2EE      |
+| GAYATHRI NARAYANAN | Core Java SE 1.6     | J2SE      |
+| RADHIKA MOHAN      | Core Java SE 1.6     | J2SE      |
+| KISHORE SRINIVAS   | Core Java SE 1.6     | J2SE      |
+| GAYATHRI NARAYANAN | Oracle 10g PL/ SQL   | O10PLSQL  |
+| RADHIKA MOHAN      | Oracle 10g PL/ SQL   | O10PLSQL  |
+| KISHORE SRINIVAS   | Oracle 10g PL/ SQL   | O10PLSQL  |
++--------------------+----------------------+-----------+
+12 rows in set (0.13 sec)
+
+mysql> select all from facultydeatils;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'from facultydeatils' at line 1
+mysql> select * from facultydeatils;
+ERROR 1146 (42S02): Table 'niit.facultydeatils' doesn't exist
+mysql> select * from facultydetails;
++------------+-------+----------------------+------------------+---------------+--------------------------------------------+--------------------+-----------------------------------+------------------+
+| Faculty_id | Title | Faculty_Name         | Faculty_Location | Faculty_Track | Faculty_Qualification                      | Faculty_Experience | Faculty_Email                     | Faculty_password |
++------------+-------+----------------------+------------------+---------------+--------------------------------------------+--------------------+-----------------------------------+------------------+
+| F001       | Mr.   | PANKAJ GHOSH         | Pune             | Java          | Bachelorof Technology                      |                 12 | Pankaj.Ghosh@alliance.com         | nn4@123          |
+| F002       | Mr.   | SANJAY RADHAKRISHNAN | Bangalore        | DotNet        | Bachelor of Technology                     |                 12 | Sanjay.Radhakrishnan@alliance.com | fac2@123         |
+| F003       | Mrs.  | NANDINI NAIR         | Kolkata          | Java          | Master of Computer Applications            |                  9 | Nandini.Nair@alliance.com         | fac4@123         |
+| F005       | Miss. | ANITHA PAREKH        | Hyderabad        | Testing       | Master of Computer Applications            |                  6 | Anitha.Parekh@alliance.com        | fac5@123         |
+| F007       | Ms.   | MEENA KULKARNI       | Coimbatore       | Testing       | Bachelor of Technology                     |                  5 | Meena.Kulkarni@alliance.com       | fac7@123         |
+| F008       | Mr.   | Abc                  | Mumbai           | Java          | Masterof Science In Information Technology |                 12 | Sagar.Menon@alliance.com          | fac8@123         |
+| F009       | Mr.   | Null                 | Mumbai           | Java          | Masterof Science In Information Technology |                 12 | Sagar.Menone@alliance.com         | fac8@123         |
++------------+-------+----------------------+------------------+---------------+--------------------------------------------+--------------------+-----------------------------------+------------------+
+7 rows in set (1.89 sec)
+
+mysql> select * from student_status;
++------------+-----------+------------+------------+----------------+----------------+
+| student_id | Module_id | Start_date | end_date   | AfeedbackGiven | TfeedbackGiven |
++------------+-----------+------------+------------+----------------+----------------+
+| A001       | O10SQL    | 2000-12-15 | 2000-12-25 | B001           | F001           |
+| A002       | 10SQL     | 2000-12-15 | 2000-12-25 | B001           | F001           |
+| A003       | O10SQL    | 2000-12-15 | 2000-12-25 | B001           | F001           |
+| A001       | O10PLSQL  | 2001-02-01 | 2001-02-12 | B002           | F002           |
+| A002       | O10PLSQL  | 2001-02-01 | 2001-02-12 | B002           | F002           |
+| A003       | O10PLSQL  | 2001-02-01 | 2001-02-12 | B002           | F002           |
+| A001       | J2SE      | 2002-08-20 | 2002-10-25 | B003           | F003           |
+| A002       | J2SE      | 2002-08-20 | 2002-10-25 | B003           | F003           |
++------------+-----------+------------+------------+----------------+----------------+
+8 rows in set (0.00 sec)
+
+mysql> select * from batchdetails;
++----------+--------------------+-----------------+
+| Batch_id | Batch_faculty      | Batch_DEPT_Name |
++----------+--------------------+-----------------+
+| B001     | MRS.SWATI ROY      | MSP             |
+| B002     | MRS.ARURNA K       | HEALTHCARE      |
+| B003     | MR.RAJESH KRISHNAN | LIFE SCIENCES   |
+| B004     | MR.SACHIN SHETTY   | BFS             |
+| B005     | MR.RAMESH PATEL    | COMMUNICATIONS  |
++----------+--------------------+-----------------+
+5 rows in set (0.10 sec)
+
+mysql> CREATE TABLE Faculty_LStatus(Faculty_IdVARCHAR(20) PRIMARY KEY,Title   VARCHAR(7)NOT NULL,Faculty_NameVARCHAR(30) NOT NULL,Faculty_LocationVARCHAR(30) NOT NULL,Faculty_TrackVARCHAR(15)NOT NULL,Faculty_QualificationVARCHAR(100) NOT NULL,Faculty_Experianceint ,Faculty_EmailVARCHAR(100)NOT NULL,Faculty_PasswordVARCHAR(20) NOT NULL);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(20) PRIMARY KEY,Title   VARCHAR(7)NOT NULL,Faculty_NameVARCHAR(30) NOT NULL,Fac' at line 1
+mysql>
+mysql>
+mysql> select * from faculty_feedback;
+Empty set (0.09 sec)
+
+mysql> create table faculty_Lstatus(Faculty_IdVARCHAR(20) PRIMARY KEY,Title   VARCHAR(7)NOT NULL,Faculty_NameVARCHAR(30) NOT NULL,Faculty_LocationVARCHAR(30) NOT NULL,Faculty_TrackVARCHAR(15)NOT NULL,Faculty_QualificationVARCHAR(100) NOT NULL,Faculty_Experianceint ,Faculty_EmailVARCHAR(100)NOT NULL,Faculty_PasswordVARCHAR(20) NOT NULL);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(20) PRIMARY KEY,Title   VARCHAR(7)NOT NULL,Faculty_NameVARCHAR(30) NOT NULL,Fac' at line 1
+mysql> create table faculty_Lstatus(Faculty_Id VARCHAR(20) PRIMARY KEY,Title VARCHAR(7) NOT NULL,Faculty_Name VARCHAR(30) NOT NULL,Faculty_Location VARCHAR(30) NOT NULL,Faculty_Track VARCHAR(15) NOT NULL,Faculty_Qualification VARCHAR(100) NOT NULL,Faculty_Experiance int ,Faculty_Email VARCHAR(100) NOT NULL,Faculty_Password VARCHAR(20) NOT NULL);
+Query OK, 0 rows affected (0.45 sec)
+
+mysql> insert into Faculty_LStatus values ('F001','Mr.','Farook', 'Ooty','Java','Bachelor of Technology',9,'farook@niit.com','fac011');insert into Faculty_LStatus values ('F002','Mr.','Durai', 'Chennai','Java','Bachelor of Technology',8,'durais@niit.com','fac012');insert into Faculty_LStatus values ('F003','Mr.','Jayaprasad K', 'Mumbai','Testing','Bachelor of Technology',19,'jaya@niit.com','fac013');
+Query OK, 1 row affected (0.17 sec)
+
+Query OK, 1 row affected (0.04 sec)
+
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select * from faculty_Lstatus;
++------------+-------+--------------+------------------+---------------+------------------------+--------------------+-----------------+------------------+
+| Faculty_Id | Title | Faculty_Name | Faculty_Location | Faculty_Track | Faculty_Qualification  | Faculty_Experiance | Faculty_Email   | Faculty_Password |
++------------+-------+--------------+------------------+---------------+------------------------+--------------------+-----------------+------------------+
+| F001       | Mr.   | Farook       | Ooty             | Java          | Bachelor of Technology |                  9 | farook@niit.com | fac011           |
+| F002       | Mr.   | Durai        | Chennai          | Java          | Bachelor of Technology |                  8 | durais@niit.com | fac012           |
+| F003       | Mr.   | Jayaprasad K | Mumbai           | Testing       | Bachelor of Technology |                 19 | jaya@niit.com   | fac013           |
++------------+-------+--------------+------------------+---------------+------------------------+--------------------+-----------------+------------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from facultyDetails;
++------------+-------+----------------------+------------------+---------------+--------------------------------------------+--------------------+-----------------------------------+------------------+
+| Faculty_id | Title | Faculty_Name         | Faculty_Location | Faculty_Track | Faculty_Qualification                      | Faculty_Experience | Faculty_Email                     | Faculty_password |
++------------+-------+----------------------+------------------+---------------+--------------------------------------------+--------------------+-----------------------------------+------------------+
+| F001       | Mr.   | PANKAJ GHOSH         | Pune             | Java          | Bachelorof Technology                      |                 12 | Pankaj.Ghosh@alliance.com         | nn4@123          |
+| F002       | Mr.   | SANJAY RADHAKRISHNAN | Bangalore        | DotNet        | Bachelor of Technology                     |                 12 | Sanjay.Radhakrishnan@alliance.com | fac2@123         |
+| F003       | Mrs.  | NANDINI NAIR         | Kolkata          | Java          | Master of Computer Applications            |                  9 | Nandini.Nair@alliance.com         | fac4@123         |
+| F005       | Miss. | ANITHA PAREKH        | Hyderabad        | Testing       | Master of Computer Applications            |                  6 | Anitha.Parekh@alliance.com        | fac5@123         |
+| F007       | Ms.   | MEENA KULKARNI       | Coimbatore       | Testing       | Bachelor of Technology                     |                  5 | Meena.Kulkarni@alliance.com       | fac7@123         |
+| F008       | Mr.   | Abc                  | Mumbai           | Java          | Masterof Science In Information Technology |                 12 | Sagar.Menon@alliance.com          | fac8@123         |
+| F009       | Mr.   | Null                 | Mumbai           | Java          | Masterof Science In Information Technology |                 12 | Sagar.Menone@alliance.com         | fac8@123         |
++------------+-------+----------------------+------------------+---------------+--------------------------------------------+--------------------+-----------------------------------+------------------+
+7 rows in set (0.05 sec)
+
+mysql> select * from facultydetails where faculty_experience >10;
++------------+-------+----------------------+------------------+---------------+--------------------------------------------+--------------------+-----------------------------------+------------------+
+| Faculty_id | Title | Faculty_Name         | Faculty_Location | Faculty_Track | Faculty_Qualification                      | Faculty_Experience | Faculty_Email                     | Faculty_password |
++------------+-------+----------------------+------------------+---------------+--------------------------------------------+--------------------+-----------------------------------+------------------+
+| F001       | Mr.   | PANKAJ GHOSH         | Pune             | Java          | Bachelorof Technology                      |                 12 | Pankaj.Ghosh@alliance.com         | nn4@123          |
+| F002       | Mr.   | SANJAY RADHAKRISHNAN | Bangalore        | DotNet        | Bachelor of Technology                     |                 12 | Sanjay.Radhakrishnan@alliance.com | fac2@123         |
+| F008       | Mr.   | Abc                  | Mumbai           | Java          | Masterof Science In Information Technology |                 12 | Sagar.Menon@alliance.com          | fac8@123         |
+| F009       | Mr.   | Null                 | Mumbai           | Java          | Masterof Science In Information Technology |                 12 | Sagar.Menone@alliance.com         | fac8@123         |
++------------+-------+----------------------+------------------+---------------+--------------------------------------------+--------------------+-----------------------------------+------------------+
+4 rows in set (0.00 sec)
+
+mysql> update facultydetails set faculty_location='Chennai' where faculty_id in (select faculty_id from faculty_Lstatus where faculty_experience >10);
+Query OK, 2 rows affected (0.08 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> select * from facultydetails;
++------------+-------+----------------------+------------------+---------------+--------------------------------------------+--------------------+-----------------------------------+------------------+
+| Faculty_id | Title | Faculty_Name         | Faculty_Location | Faculty_Track | Faculty_Qualification                      | Faculty_Experience | Faculty_Email                     | Faculty_password |
++------------+-------+----------------------+------------------+---------------+--------------------------------------------+--------------------+-----------------------------------+------------------+
+| F001       | Mr.   | PANKAJ GHOSH         | Chennai          | Java          | Bachelorof Technology                      |                 12 | Pankaj.Ghosh@alliance.com         | nn4@123          |
+| F002       | Mr.   | SANJAY RADHAKRISHNAN | Chennai          | DotNet        | Bachelor of Technology                     |                 12 | Sanjay.Radhakrishnan@alliance.com | fac2@123         |
+| F003       | Mrs.  | NANDINI NAIR         | Kolkata          | Java          | Master of Computer Applications            |                  9 | Nandini.Nair@alliance.com         | fac4@123         |
+| F005       | Miss. | ANITHA PAREKH        | Hyderabad        | Testing       | Master of Computer Applications            |                  6 | Anitha.Parekh@alliance.com        | fac5@123         |
+| F007       | Ms.   | MEENA KULKARNI       | Coimbatore       | Testing       | Bachelor of Technology                     |                  5 | Meena.Kulkarni@alliance.com       | fac7@123         |
+| F008       | Mr.   | Abc                  | Mumbai           | Java          | Masterof Science In Information Technology |                 12 | Sagar.Menon@alliance.com          | fac8@123         |
+| F009       | Mr.   | Null                 | Mumbai           | Java          | Masterof Science In Information Technology |                 12 | Sagar.Menone@alliance.com         | fac8@123         |
++------------+-------+----------------------+------------------+---------------+--------------------------------------------+--------------------+-----------------------------------+------------------+
+7 rows in set (0.00 sec)
+
+mysql> drop * from facultydetails where faculty_id in (select faculty_id from faculty_Lstatus where faculty_experience >12);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '* from facultydetails where faculty_id in (select faculty_id from faculty_Lstatu' at line 1
+mysql> delete from facultydetails where faculty_id in (select faculty_id from faculty_Lstatus where faculty_experience >12);
+Query OK, 0 rows affected (0.11 sec)
+
+mysql> select * from facultydetails;
++------------+-------+----------------------+------------------+---------------+--------------------------------------------+--------------------+-----------------------------------+------------------+
+| Faculty_id | Title | Faculty_Name         | Faculty_Location | Faculty_Track | Faculty_Qualification                      | Faculty_Experience | Faculty_Email                     | Faculty_password |
++------------+-------+----------------------+------------------+---------------+--------------------------------------------+--------------------+-----------------------------------+------------------+
+| F001       | Mr.   | PANKAJ GHOSH         | Chennai          | Java          | Bachelorof Technology                      |                 12 | Pankaj.Ghosh@alliance.com         | nn4@123          |
+| F002       | Mr.   | SANJAY RADHAKRISHNAN | Chennai          | DotNet        | Bachelor of Technology                     |                 12 | Sanjay.Radhakrishnan@alliance.com | fac2@123         |
+| F003       | Mrs.  | NANDINI NAIR         | Kolkata          | Java          | Master of Computer Applications            |                  9 | Nandini.Nair@alliance.com         | fac4@123         |
+| F005       | Miss. | ANITHA PAREKH        | Hyderabad        | Testing       | Master of Computer Applications            |                  6 | Anitha.Parekh@alliance.com        | fac5@123         |
+| F007       | Ms.   | MEENA KULKARNI       | Coimbatore       | Testing       | Bachelor of Technology                     |                  5 | Meena.Kulkarni@alliance.com       | fac7@123         |
+| F008       | Mr.   | Abc                  | Mumbai           | Java          | Masterof Science In Information Technology |                 12 | Sagar.Menon@alliance.com          | fac8@123         |
+| F009       | Mr.   | Null                 | Mumbai           | Java          | Masterof Science In Information Technology |                 12 | Sagar.Menone@alliance.com         | fac8@123         |
++------------+-------+----------------------+------------------+---------------+--------------------------------------------+--------------------+-----------------------------------+------------------+
+7 rows in set (0.00 sec)
+
+mysql> select 8 from faculty_Lstatus;
++---+
+| 8 |
++---+
+| 8 |
+| 8 |
+| 8 |
++---+
+3 rows in set (0.00 sec)
+
+mysql> select * from faculty_Lstatus;
++------------+-------+--------------+------------------+---------------+------------------------+--------------------+-----------------+------------------+
+| Faculty_Id | Title | Faculty_Name | Faculty_Location | Faculty_Track | Faculty_Qualification  | Faculty_Experiance | Faculty_Email   | Faculty_Password |
++------------+-------+--------------+------------------+---------------+------------------------+--------------------+-----------------+------------------+
+| F001       | Mr.   | Farook       | Ooty             | Java          | Bachelor of Technology |                  9 | farook@niit.com | fac011           |
+| F002       | Mr.   | Durai        | Chennai          | Java          | Bachelor of Technology |                  8 | durais@niit.com | fac012           |
+| F003       | Mr.   | Jayaprasad K | Mumbai           | Testing       | Bachelor of Technology |                 19 | jaya@niit.com   | fac013           |
++------------+-------+--------------+------------------+---------------+------------------------+--------------------+-----------------+------------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from faculty_lstatus f where faculty_id in (select f2.faculty_id from facultydetails f2 where f1.faculty_id=f2.faculty_id);
+ERROR 1054 (42S22): Unknown column 'f1.faculty_id' in 'where clause'
+mysql> select * from faculty_lstatus f where faculty_id in (select f2.faculty_id from facultydetails f2 where f.faculty_id=f2.faculty_id);
++------------+-------+--------------+------------------+---------------+------------------------+--------------------+-----------------+------------------+
+| Faculty_Id | Title | Faculty_Name | Faculty_Location | Faculty_Track | Faculty_Qualification  | Faculty_Experiance | Faculty_Email   | Faculty_Password |
++------------+-------+--------------+------------------+---------------+------------------------+--------------------+-----------------+------------------+
+| F001       | Mr.   | Farook       | Ooty             | Java          | Bachelor of Technology |                  9 | farook@niit.com | fac011           |
+| F002       | Mr.   | Durai        | Chennai          | Java          | Bachelor of Technology |                  8 | durais@niit.com | fac012           |
+| F003       | Mr.   | Jayaprasad K | Mumbai           | Testing       | Bachelor of Technology |                 19 | jaya@niit.com   | fac013           |
++------------+-------+--------------+------------------+---------------+------------------------+--------------------+-----------------+------------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from faculty_lstatus f where f.faculty_id in (select f2.faculty_id from facultydetails f2 where f.faculty_id=f2.faculty_id);
++------------+-------+--------------+------------------+---------------+------------------------+--------------------+-----------------+------------------+
+| Faculty_Id | Title | Faculty_Name | Faculty_Location | Faculty_Track | Faculty_Qualification  | Faculty_Experiance | Faculty_Email   | Faculty_Password |
++------------+-------+--------------+------------------+---------------+------------------------+--------------------+-----------------+------------------+
+| F001       | Mr.   | Farook       | Ooty             | Java          | Bachelor of Technology |                  9 | farook@niit.com | fac011           |
+| F002       | Mr.   | Durai        | Chennai          | Java          | Bachelor of Technology |                  8 | durais@niit.com | fac012           |
+| F003       | Mr.   | Jayaprasad K | Mumbai           | Testing       | Bachelor of Technology |                 19 | jaya@niit.com   | fac013           |
++------------+-------+--------------+------------------+---------------+------------------------+--------------------+-----------------+------------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from batchmodule;
+ERROR 1146 (42S02): Table 'niit.batchmodule' doesn't exist
+mysql> select * from batchdetails;
++----------+--------------------+-----------------+
+| Batch_id | Batch_faculty      | Batch_DEPT_Name |
++----------+--------------------+-----------------+
+| B001     | MRS.SWATI ROY      | MSP             |
+| B002     | MRS.ARURNA K       | HEALTHCARE      |
+| B003     | MR.RAJESH KRISHNAN | LIFE SCIENCES   |
+| B004     | MR.SACHIN SHETTY   | BFS             |
+| B005     | MR.RAMESH PATEL    | COMMUNICATIONS  |
++----------+--------------------+-----------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from facultydetails;
++------------+-------+----------------------+------------------+---------------+--------------------------------------------+--------------------+-----------------------------------+------------------+
+| Faculty_id | Title | Faculty_Name         | Faculty_Location | Faculty_Track | Faculty_Qualification                      | Faculty_Experience | Faculty_Email                     | Faculty_password |
++------------+-------+----------------------+------------------+---------------+--------------------------------------------+--------------------+-----------------------------------+------------------+
+| F001       | Mr.   | PANKAJ GHOSH         | Chennai          | Java          | Bachelorof Technology                      |                 12 | Pankaj.Ghosh@alliance.com         | nn4@123          |
+| F002       | Mr.   | SANJAY RADHAKRISHNAN | Chennai          | DotNet        | Bachelor of Technology                     |                 12 | Sanjay.Radhakrishnan@alliance.com | fac2@123         |
+| F003       | Mrs.  | NANDINI NAIR         | Kolkata          | Java          | Master of Computer Applications            |                  9 | Nandini.Nair@alliance.com         | fac4@123         |
+| F005       | Miss. | ANITHA PAREKH        | Hyderabad        | Testing       | Master of Computer Applications            |                  6 | Anitha.Parekh@alliance.com        | fac5@123         |
+| F007       | Ms.   | MEENA KULKARNI       | Coimbatore       | Testing       | Bachelor of Technology                     |                  5 | Meena.Kulkarni@alliance.com       | fac7@123         |
+| F008       | Mr.   | Abc                  | Mumbai           | Java          | Masterof Science In Information Technology |                 12 | Sagar.Menon@alliance.com          | fac8@123         |
+| F009       | Mr.   | Null                 | Mumbai           | Java          | Masterof Science In Information Technology |                 12 | Sagar.Menone@alliance.com         | fac8@123         |
++------------+-------+----------------------+------------------+---------------+--------------------------------------------+--------------------+-----------------------------------+------------------+
+7 rows in set (0.14 sec)
+
+mysql> desc faculty_feedback;
++----------------+-------------+------+-----+---------+-------+
+| Field          | Type        | Null | Key | Default | Extra |
++----------------+-------------+------+-----+---------+-------+
+| Faculty_id     | varchar(20) | YES  | MUL | NULL    |       |
+| Question_id    | varchar(20) | YES  | MUL | NULL    |       |
+| Batch_id       | varchar(20) | YES  | MUL | NULL    |       |
+| Module_id      | varchar(20) | YES  | MUL | NULL    |       |
+| Faculty_Rating | int(11)     | YES  |     | NULL    |       |
++----------------+-------------+------+-----+---------+-------+
+5 rows in set (0.19 sec)
+
+mysql> select * from batchdetails;
++----------+--------------------+-----------------+
+| Batch_id | Batch_faculty      | Batch_DEPT_Name |
++----------+--------------------+-----------------+
+| B001     | MRS.SWATI ROY      | MSP             |
+| B002     | MRS.ARURNA K       | HEALTHCARE      |
+| B003     | MR.RAJESH KRISHNAN | LIFE SCIENCES   |
+| B004     | MR.SACHIN SHETTY   | BFS             |
+| B005     | MR.RAMESH PATEL    | COMMUNICATIONS  |
++----------+--------------------+-----------------+
+5 rows in set (0.00 sec)
+
+mysql> select f.faculty_id,b.batch_id from facultydetails f join batchdetails on f.faculty_name=batch_faculty;
+ERROR 1054 (42S22): Unknown column 'b.batch_id' in 'field list'
+mysql> select f.faculty_id,b.batch_id from facultydetails f join batchdetails on f.faculty_name=b.batch_faculty;
+ERROR 1054 (42S22): Unknown column 'b.batch_id' in 'field list'
+mysql> select f.faculty_id,b.batch_id from facultydetails f join batchdetails on concate(f.title,f.faculty_name)=b.batch_faculty;
+ERROR 1054 (42S22): Unknown column 'b.batch_id' in 'field list'
+mysql> select f.faculty_id,b.batch_id from facultydetails f join batchdetails on concate(f.title,f.faculty_name)=b.batch_faculty;
+ERROR 1054 (42S22): Unknown column 'b.batch_id' in 'field list'
+mysql>
+mysql>
+mysql>
+mysql> select f.faculty_id,b.batch_id from facultydetails f join batchdetails b on concate(f.title,f.faculty_name)=b.batch_faculty;
+ERROR 1305 (42000): FUNCTION niit.concate does not exist
+mysql> select f.faculty_id,b.batch_id from facultydetails f join batchdetails b on concate(f.title,'.',f.faculty_name)=b.batch_faculty;
+ERROR 1305 (42000): FUNCTION niit.concate does not exist
+mysql> select f.faculty_id,b.batch_id from facultydetails f join batchdetails b on concat(f.title,'.',f.faculty_name)=b.batch_faculty;
+Empty set (0.00 sec)
+
+mysql> select f.faculty_id,b.batch_id from facultydetails f join batchdetails b on concat(f.title,f.faculty_name)=b.batch_faculty;
+Empty set (0.00 sec)
+
+mysql> select * from student_status;
++------------+-----------+------------+------------+----------------+----------------+
+| student_id | Module_id | Start_date | end_date   | AfeedbackGiven | TfeedbackGiven |
++------------+-----------+------------+------------+----------------+----------------+
+| A001       | O10SQL    | 2000-12-15 | 2000-12-25 | B001           | F001           |
+| A002       | 10SQL     | 2000-12-15 | 2000-12-25 | B001           | F001           |
+| A003       | O10SQL    | 2000-12-15 | 2000-12-25 | B001           | F001           |
+| A001       | O10PLSQL  | 2001-02-01 | 2001-02-12 | B002           | F002           |
+| A002       | O10PLSQL  | 2001-02-01 | 2001-02-12 | B002           | F002           |
+| A003       | O10PLSQL  | 2001-02-01 | 2001-02-12 | B002           | F002           |
+| A001       | J2SE      | 2002-08-20 | 2002-10-25 | B003           | F003           |
+| A002       | J2SE      | 2002-08-20 | 2002-10-25 | B003           | F003           |
++------------+-----------+------------+------------+----------------+----------------+
+8 rows in set (0.02 sec)
+
+mysql> select * from facultydetails;
++------------+-------+----------------------+------------------+---------------+--------------------------------------------+--------------------+-----------------------------------+------------------+
+| Faculty_id | Title | Faculty_Name         | Faculty_Location | Faculty_Track | Faculty_Qualification                      | Faculty_Experience | Faculty_Email                     | Faculty_password |
++------------+-------+----------------------+------------------+---------------+--------------------------------------------+--------------------+-----------------------------------+------------------+
+| F001       | Mr.   | PANKAJ GHOSH         | Chennai          | Java          | Bachelorof Technology                      |                 12 | Pankaj.Ghosh@alliance.com         | nn4@123          |
+| F002       | Mr.   | SANJAY RADHAKRISHNAN | Chennai          | DotNet        | Bachelor of Technology                     |                 12 | Sanjay.Radhakrishnan@alliance.com | fac2@123         |
+| F003       | Mrs.  | NANDINI NAIR         | Kolkata          | Java          | Master of Computer Applications            |                  9 | Nandini.Nair@alliance.com         | fac4@123         |
+| F005       | Miss. | ANITHA PAREKH        | Hyderabad        | Testing       | Master of Computer Applications            |                  6 | Anitha.Parekh@alliance.com        | fac5@123         |
+| F007       | Ms.   | MEENA KULKARNI       | Coimbatore       | Testing       | Bachelor of Technology                     |                  5 | Meena.Kulkarni@alliance.com       | fac7@123         |
+| F008       | Mr.   | Abc                  | Mumbai           | Java          | Masterof Science In Information Technology |                 12 | Sagar.Menon@alliance.com          | fac8@123         |
+| F009       | Mr.   | Null                 | Mumbai           | Java          | Masterof Science In Information Technology |                 12 | Sagar.Menone@alliance.com         | fac8@123         |
++------------+-------+----------------------+------------------+---------------+--------------------------------------------+--------------------+-----------------------------------+------------------+
+7 rows in set (0.00 sec)
+
+mysql> select s.student_id from student_status s right join facultydetails f on s.student_id= f.Tfeedbackgiven;
+ERROR 1054 (42S22): Unknown column 'f.Tfeedbackgiven' in 'on clause'
+mysql> select s.student_id from student_status s right join facultydetails f on f.faculty_id= s.Tfeedbackgiven;
++------------+
+| student_id |
++------------+
+| NULL       |
+| NULL       |
+| A001       |
+| A002       |
+| A001       |
+| A002       |
+| A003       |
+| NULL       |
+| NULL       |
+| A001       |
+| A002       |
+| A003       |
++------------+
+12 rows in set (0.00 sec)
+
+mysql> select s.student_id, faculty_id from student_status s right join facultydetails f on f.faculty_id= s.Tfeedbackgiven;
++------------+------------+
+| student_id | faculty_id |
++------------+------------+
+| NULL       | F005       |
+| NULL       | F007       |
+| A001       | F003       |
+| A002       | F003       |
+| A001       | F001       |
+| A002       | F001       |
+| A003       | F001       |
+| NULL       | F008       |
+| NULL       | F009       |
+| A001       | F002       |
+| A002       | F002       |
+| A003       | F002       |
++------------+------------+
+12 rows in set (0.00 sec)
+
+mysql> select s.student_id, faculty_id from student_status s left join facultydetails f on f.faculty_id= s.Tfeedbackgiven;
++------------+------------+
+| student_id | faculty_id |
++------------+------------+
+| A001       | F001       |
+| A002       | F001       |
+| A003       | F001       |
+| A001       | F002       |
+| A002       | F002       |
+| A003       | F002       |
+| A001       | F003       |
+| A002       | F003       |
++------------+------------+
+8 rows in set (0.00 sec)
+
+mysql> select s.student_id, faculty_id from student_status s left join facultydetails f on f.faculty_id= s.Tfeedbackgiven union all select s.student_id, faculty_id from student_status s right join facultydetails f on f.faculty_id= s.Tfeedbackgiven; 
++------------+------------+
+| student_id | faculty_id |
++------------+------------+
+| A001       | F001       |
+| A002       | F001       |
+| A003       | F001       |
+| A001       | F002       |
+| A002       | F002       |
+| A003       | F002       |
+| A001       | F003       |
+| A002       | F003       |
+| NULL       | F005       |
+| NULL       | F007       |
+| A001       | F003       |
+| A002       | F003       |
+| A001       | F001       |
+| A002       | F001       |
+| A003       | F001       |
+| NULL       | F008       |
+| NULL       | F009       |
+| A001       | F002       |
+| A002       | F002       |
+| A003       | F002       |
++------------+------------+
+20 rows in set (0.02 sec)
+
+mysql>
