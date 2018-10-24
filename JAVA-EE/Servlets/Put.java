@@ -33,7 +33,7 @@ public class Put extends HttpServlet {
 	Connection con;
 	Statement st;
 	boolean res1;
-	boolean connectDB(String fname,String lname,String epasswd,String cpasswd,String email,String gender) throws ClassNotFoundException, SQLException
+	boolean connectDB(String fname,String lname,String epasswd,String cpasswd,String email,String gender,String[] chb) throws ClassNotFoundException, SQLException
 	{
 		/*Class.forName("com.mysql.jdbc.Driver");
 		con=DriverManager.getConnection("jdbc:mysql://localhost:3306/User_DB","root","root");*/
@@ -44,8 +44,18 @@ public class Put extends HttpServlet {
 			}*/
 			//else
 			//{
+				/*String chem=chb[0];
+				String mat=chb[1];*/
 				String query="insert into User_Data values('"+fname+"','"+lname+"','"+email+"','"+epasswd+"','"+gender+"')";
 				res=st.executeUpdate(query);
+				String query1="insert into User_Subjects values('"+email+"','Physics')";
+				res=st.executeUpdate(query1);
+				String query2;
+				for(int i=0;i<chb.length;i++)
+				{
+					query2="insert into User_Subjects values('"+email+"','"+chb[i]+"')";
+					res=st.executeUpdate(query2);
+				}
 				//System.out.println("Data inserted successfully:"+res);
 				if(res==1)
 				{
@@ -75,9 +85,9 @@ public class Put extends HttpServlet {
 		int i,ch;
 		char ans;
 		String query;
-		Put p;
+		//Put p;
 		try {
-			p = new Put();
+			//p = new Put();
 		
 		String fname=request.getParameter("fname");
 		String lname=request.getParameter("lname");
@@ -86,14 +96,15 @@ public class Put extends HttpServlet {
 		String email=request.getParameter("email");
 		String gender="N/A";
 		gender= request.getParameter("gender");
-		String[] checkedIds=request.getParameterValues("checkedRows");
+		String[] checkedIds=new String[2];
+		checkedIds=request.getParameterValues("checkedRows");
 		/*String selected_gender=(gender.equals("Male")?"Male":gender.equals("Female")?"Female":gender.equals("Other")?"Other":"N/A");*/
 		//System.out.println("Gender is:"+gender);
-			res1=p.connectDB(fname, lname, epasswd, cpasswd, email,gender);
+			res1=connectDB(fname, lname, epasswd, cpasswd, email,gender,checkedIds);
 			//System.out.println("Data inserted successfully:"+res1);
 			if(res1==true)
 			{
-				response.sendRedirect("http://localhost:8081/Shubhankar1EE/LogIn.html");
+				response.sendRedirect("http://localhost:8081/Shubhankar1EE/lg.html");
 			}
 			else
 			{
@@ -102,7 +113,7 @@ public class Put extends HttpServlet {
 					rsd= request.getRequestDispatcher("SignUp.html");
 		            rsd.include(request, response);
 			}
-			con.close();
+			//con.close();
 		} catch (ClassNotFoundException e1) {
 			e1.printStackTrace();
 		} catch (SQLException e1) {
